@@ -1,6 +1,5 @@
 # 109-2_Android-Application-Development_Project
 
-
 ### Database Web APIs
 By 108590050  
 
@@ -12,36 +11,36 @@ methods:
 
 #### Create a new user
 Parameters:
-> uid: userID
-> name: username
-> password: password
++ uid: userID  
++ name: username  
++ password: password  
 
 Return:
-> HTTP status codes 200 if success.
-> HTTP status codes 400 if failed.
++ HTTP status codes 200 if success.  
+- HTTP status codes 400 if failed.
 
 > /CreateUser?uid=108590000&name=test&password=test
 
 #### Get all users
 Parameters:
-> NONE
++ NONE
 
 Return:
-> a list of users data in JSON format.
++ a list of users data in JSON format.
 
 > /GetUser
 
 
 #### Get a user by uid
 Parameters:
-> uid: userID
++ uid: userID
 
 Return:
-> a list of user data in JSON format.
++ a list of user data in JSON format.
 
 Return:
-> HTTP status codes 200 if success.
-> HTTP status codes 400 if failed.
++ HTTP status codes 200 if success.
+- HTTP status codes 400 if failed.
 
 > /GetUser?uid=108590000
 
