@@ -46,22 +46,37 @@ Return:
 
 #### Update a user by uid
 Parameters:
-> uid: userID
-> name: username
-> password: password
++ uid: userID
++ name: username
++ password: password
 
 Return:
-> HTTP status codes 200 if success.
-> HTTP status codes 400 if failed.
-
-> /UpdateUser?uid=108590000&name=newTest&password=newTest
++ HTTP status codes 200 if success.
+- HTTP status codes 400 if failed.
+```php
+/UpdateUser?uid=108590000&name=newTest&password=newTest
+```
 
 #### Delete a user by uid
 Parameters:
-> uid: userID
++ uid: userID
 
 Return:
-> HTTP status codes 200 if success.
-> HTTP status codes 400 if failed.
++ HTTP status codes 200 if success.
+- HTTP status codes 400 if failed.
+```php
+/DeleteUser?uid=108590000
+```
 
-> /DeleteUser?uid=108590000
+
+#### Create a new item
+Parameters:
++ uid: userID  
++ name: username  
++ password: password  
+
+Return:
++ HTTP status codes 200 if success.  
+- HTTP status codes 400 if failed.
+
+> /CreateItem?uid=108590000
