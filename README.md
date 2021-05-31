@@ -5,7 +5,7 @@ By 108590050
 
 I have create a Web Server for accessing the Database, since Android Studio cannot connect to the Database directly.
 
-> Server IP: 140.124.184.193:8080/androidfinal/
+[Server](http://140.124.184.193:8080/androidfinal/)
 
 methods:  
 
