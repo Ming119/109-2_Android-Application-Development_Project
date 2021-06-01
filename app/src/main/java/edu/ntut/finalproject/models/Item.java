@@ -40,5 +40,5 @@ public class Item {
     public void setPrice(int price) { this.price = price; }
     public void setUid(String uid) { this.uid = uid; }
     public void setSold(boolean sold) { this.sold = sold; }
-
+    
 }

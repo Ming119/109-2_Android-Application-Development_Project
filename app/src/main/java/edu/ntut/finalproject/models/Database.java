@@ -2,12 +2,6 @@ package edu.ntut.finalproject.models;
 
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,105 +31,58 @@ public class Database {
 
     /**
      * User Login Function
-     * @param user
-     * @param pw
-     * @return true if login success
-     * @return false if login failed
+     * @param uid
+     * @return JSON like String
+     * @throws IOException
      */
-    public boolean Login(@NonNull User user, String pw) {
-        String uid = user.getUid();
+    public String Login(String uid)  throws IOException {
+        String url = BASE_URL + "GetUser?";
+        Uri builtURI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(UID, uid)
+                .build();
 
-        try {
-            String url = BASE_URL + "GetUser?";
-            Uri builtURI = Uri.parse(url).buildUpon()
-                    .appendQueryParameter(UID, uid)
-                    .build();
+        URL requestURL = new URL(builtURI.toString());
 
-            URL requestURL = new URL(builtURI.toString());
+        urlConnection = (HttpURLConnection) requestURL.openConnection();
+        urlConnection.setRequestMethod(POST);
+        urlConnection.connect();
 
-            urlConnection = (HttpURLConnection) requestURL.openConnection();
-            urlConnection.setRequestMethod(POST);
-            urlConnection.connect();
+        reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+        StringBuilder builder = new StringBuilder();
 
-            InputStream inputStream = urlConnection.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null)
+            builder.append(line + "\n");
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
-                builder.append("\n");
+        if (builder.length() == 0) return null;
 
-            }
-            if (builder.length() == 0) {
-                return false;
-            }
-            String JSONString = builder.toString();
-
-            JSONObject jsonObject = new JSONObject(JSONString);
-            JSONArray usersArray = jsonObject.getJSONArray("user");
-
-            String upw   = null;
-
-            JSONObject uuser = usersArray.getJSONObject(0);
-            upw   = uuser.getString(PW);
-
-            if (upw == pw)
-                return true;
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null)
-                urlConnection.disconnect();
-
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return false;
+        return builder.toString();
     }
 
     /**
      * User Registration Function
-     * @param user
+     * @param uid
+     * @param name
      * @param pw
      * @return true if registration success
      * @return false if registration failed
+     * @throws IOException
      */
-    public boolean Register(@NonNull User user, String pw) {
-        String uid = user.getUid();
-        String name = user.getName();
+    public boolean Register(String uid, String name, String pw) throws IOException {
+        String url = BASE_URL + "CreateUser?";
+        Uri builtURI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(UID, uid)
+                .appendQueryParameter(NAME, name)
+                .appendQueryParameter(PW, pw)
+                .build();
 
-        try {
-            String url = BASE_URL + "CreateUser?";
-            Uri builtURI = Uri.parse(url).buildUpon()
-                    .appendQueryParameter(UID, uid)
-                    .appendQueryParameter(NAME, name)
-                    .appendQueryParameter(PW, pw)
-                    .build();
+        URL requestURL = new URL(builtURI.toString());
 
-            URL requestURL = new URL(builtURI.toString());
-
-            urlConnection = (HttpURLConnection) requestURL.openConnection();
-            urlConnection.setRequestMethod(POST);
-            urlConnection.connect();
-
-            if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-                return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        } finally {
-            if (urlConnection != null)
-                urlConnection.disconnect();
-        }
+        urlConnection = (HttpURLConnection) requestURL.openConnection();
+        urlConnection.setRequestMethod(POST);
+        urlConnection.connect();
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
+            return true;
 
         return false;
     }

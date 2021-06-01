@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     final String filename = "NTUTBOOKAHOLIC";
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
