@@ -4,6 +4,8 @@
 
 package edu.ntut.finalproject.models;
 
+import android.content.SharedPreferences;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,8 +19,8 @@ public class User {
     private String name;
 
     public User() {
-        uid  = "";
-        name = "";
+        uid  = null;
+        name = null;
     }
 
     public User(String uid, String name) {
@@ -31,6 +33,11 @@ public class User {
 
     public void setUid(String uid) { this.uid = uid; }
     public void setName(String name) { this.name = name; }
+
+    public boolean loginState() {
+
+        return false;
+    }
 
     /**
      * User Login
