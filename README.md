@@ -124,7 +124,7 @@ Return:
 - HTTP status code 400 if failed.
 
 ````php
-/SellItem?id=itemID
+/UpdateItem?id=itemID
 ````
 
 #### Delete a item by id

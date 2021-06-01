@@ -212,7 +212,7 @@ public class Database {
      * @throws IOException
      */
     public boolean updateItem(int id) throws IOException {
-        String url = BASE_URL + "SellItem?";
+        String url = BASE_URL + "UpdateItem?";
         Uri builtURI = Uri.parse(url).buildUpon()
                 .appendQueryParameter(ID, String.valueOf(id))
                 .build();
