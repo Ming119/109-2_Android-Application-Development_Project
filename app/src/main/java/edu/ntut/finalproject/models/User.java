@@ -1,3 +1,7 @@
+/*
+ * By 108590050
+ */
+
 package edu.ntut.finalproject.models;
 
 import org.json.JSONArray;
@@ -7,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class User {
+    private static Database db = new Database();
 
     private String uid;
     private String name;
@@ -28,7 +33,7 @@ public class User {
     public void setName(String name) { this.name = name; }
 
     /**
-     * User Login Function
+     * User Login
      * @param uid
      * @param pw
      * @return true if login success
@@ -37,9 +42,7 @@ public class User {
      * @throws JSONException
      */
     public boolean Login(String uid, String pw) throws IOException, JSONException {
-        Database db = new Database();
-
-        String JSONString = db.Login(uid);
+        String JSONString = db.getUser(uid);
 
         JSONObject jsonObject = new JSONObject(JSONString);
         JSONArray usersArray = jsonObject.getJSONArray("user");
@@ -56,7 +59,7 @@ public class User {
     }
 
     /**
-     * User Registration Function
+     * User Registration
      * @param uid
      * @param name
      * @param pw
@@ -65,7 +68,19 @@ public class User {
      * @throws IOException
      */
     public boolean Register(String uid, String name, String pw) throws IOException {
-        Database db = new Database();
-        return  db.Register(uid, name, pw);
+        return db.createUser(uid, name, pw);
+    }
+
+    /**
+     * Edit User Profile
+     * @param uid
+     * @param name
+     * @param pw
+     * @return true if edit success
+     * @return false if edit failed
+     * @throws IOException
+     */
+    public boolean EditProfile(String uid, String name, String pw) throws IOException {
+        return db.updateUser(uid, name, pw);
     }
 }
