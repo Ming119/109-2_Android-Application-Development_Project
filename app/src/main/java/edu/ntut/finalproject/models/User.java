@@ -21,4 +21,13 @@ public class User {
     public void setUid(String uid) { this.uid = uid; }
     public void setName(String name) { this.name = name; }
 
+    public boolean Login(String uid, String name, String pw) {
+
+        return false;
+    }
+
+    public boolean Register(String uid, String name, String pw) {
+
+        return false;
+    }
 }
