@@ -7,78 +7,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/activity_add_book_to_sell"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="413dp"
-        android:layout_height="307dp"
-        tools:layout_editor_absoluteY="64dp">
-
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carouselView"
-            android:layout_width="match_parent"
-            android:layout_height="242dp"
-            app:fillColor="#FDFDFD"
-            app:pageColor="#00000000"
-            app:radius="6dp"
-            app:slideInterval="3000"
-            app:strokeColor="#FF777777"
-            app:strokeWidth="1dp">
-
-        </com.synnapps.carouselview.CarouselView>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/button"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:backgroundTint="@color/cardview_dark_background" />
+            android:layout_height="wrap_content"
+            android:icon="@android:drawable/btn_star_big_on" />
 
-        <Button
-            android:id="@+id/button2"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:backgroundTint="@color/cardview_dark_background" />
+            android:layout_height="wrap_content"
+            android:icon="@android:drawable/btn_star_big_on" />
 
-        <Button
-            android:id="@+id/button3"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:backgroundTint="@color/cardview_dark_background" />
+            android:layout_height="wrap_content"
+            android:icon="@android:drawable/btn_star_big_on" />
 
-        <Button
-            android:id="@+id/button4"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:backgroundTint="@color/cardview_dark_background" />
+            android:layout_height="wrap_content"
+            android:icon="@android:drawable/btn_star_big_on" />
 
-        <Button
-            android:id="@+id/button5"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:backgroundTint="@color/cardview_dark_background" />
-    </LinearLayout>
-
-
+            android:layout_height="wrap_content"
+            android:icon="@android:drawable/btn_star_big_on" />
+    </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
