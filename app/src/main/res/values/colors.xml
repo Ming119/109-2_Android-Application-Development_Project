@@ -7,4 +7,24 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Red -->
+    <color name="IndianRed">#CD5C5C</color>
+    <color name="LightCoral">#F08080</color>
+    <color name="Salmon">#FA8072</color>
+    <color name="DarkSalmon">#E9967A</color>
+    <color name="LightSalmon">#FFA07A</color>
+    <color name="Crimson">#DC143C</color>
+    <color name="Red">#FF0000</color>
+    <color name="FireBrick">#B22222</color>
+    <color name="DarkRed">#8B0000</color>
+
+    <!-- Pink -->
+    <color name="Pink">#FFC0CB</color>
+    <color name="LightPink">#FFB6C1</color>
+    <color name="HotPink">#FF69B4</color>
+    <color name="DeepPink">#FF1493</color>
+    <color name="MediumVioletRed">#C71585</color>
+    <color name="PaleVioletRed">#DB7093</color>
+
 </resources>
