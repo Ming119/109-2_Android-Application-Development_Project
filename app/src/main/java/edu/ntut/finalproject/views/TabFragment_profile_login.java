@@ -1,5 +1,6 @@
 package edu.ntut.finalproject.views;
 
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -82,5 +83,6 @@ public class TabFragment_profile_login extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 
 }
