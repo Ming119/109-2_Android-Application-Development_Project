@@ -36,7 +36,7 @@ public class TabFragment_mainpage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_main, container, false);
 
-        recyclerView = view.findViewById(R.id.);;
+        recyclerView = view.findViewById(R.id.recyclerView);;
         recyclerView.setAdapter(new ItemAdapter(getContext()));
 
         return view;
