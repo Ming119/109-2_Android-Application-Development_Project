@@ -3,17 +3,19 @@ package edu.ntut.finalproject.views;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-
+import com.google.android.material.chip.Chip;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -30,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
-    EditText studentID;
-    EditText password;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,15 +42,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
-        studentID = findViewById(R.id.login_studentID);
-        password  = findViewById(R.id.login_passowrd);
+
 
         viewPager.setAdapter(new TabAdapter(this));
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setIcon(R.drawable.ic_launcher_foreground);
             }
         }).attach();
+
+
 
     }
 
@@ -71,19 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public void gotoRegister(View view) {
         Intent register = new Intent(this, RegisterActivity.class);
         startActivity(register);
-    }
-
-    /**
-     * .
-     * @param view
-     */
-    public void Login(View view) {
-        User user = new User();
-        try {
-            user.Login(studentID.getContext().toString(), password.getContext().toString());
-        } catch (IOException | JSONException e) {
-            Log.e("Message", e.getMessage());
-        }
     }
 
 }

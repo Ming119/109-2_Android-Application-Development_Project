@@ -1,70 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:forceDarkAllowed="false"
-    android:onClick="gotoRegister">
+    android:forceDarkAllowed="false">
 
     <TextView
         android:id="@+id/text_Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="64dp"
         android:text="@string/login"
-        android:textColor="@color/black"
+        android:textColor="@color/Black"
         android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp">
+
+        <EditText
+            android:id="@+id/login_studentID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autofillHints="@string/studentID"
+            android:background="@color/White"
+            android:ems="16"
+            android:hint="@string/studentID"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/login_passowrd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/password"
+            android:background="@color/White"
+            android:ems="16"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:onClick="Login"
         android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="@+id/login_passowrd"
-        app:layout_constraintStart_toStartOf="@+id/login_passowrd"
-        app:layout_constraintTop_toBottomOf="@+id/login_passowrd" />
-
-    <EditText
-        android:id="@+id/login_studentID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/studentID"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/text_Login"
-        app:layout_constraintStart_toStartOf="@+id/text_Login"
-        app:layout_constraintTop_toBottomOf="@+id/text_Login"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/login_passowrd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/login_studentID"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/login_studentID"
-        app:layout_constraintTop_toBottomOf="@+id/login_studentID"
-        android:autofillHints="" />
+        android:textColor="@color/Black" />
 
     <TextView
         android:id="@+id/text_gotoRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/do_not_have_and_account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:onClick="gotoRegister"
+        android:text="@string/do_not_have_and_account" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

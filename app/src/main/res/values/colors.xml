@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- https://htmlcolorcodes.com/color-names/ -->
+
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 
     <!-- Red -->
     <color name="IndianRed">#CD5C5C</color>
@@ -26,5 +27,39 @@
     <color name="DeepPink">#FF1493</color>
     <color name="MediumVioletRed">#C71585</color>
     <color name="PaleVioletRed">#DB7093</color>
+
+
+
+    <!-- White -->
+    <color name="White">#FFFFFF</color>
+    <color name="Snow">#FFFAFA</color>
+    <color name="HoneyDew">#F0FFF0</color>
+    <color name="MintCream">#F5FFFA</color>
+    <color name="Azure">#F0FFFF</color>
+    <color name="AliceBlue">#F0F8FF</color>
+    <color name="GhostWhite">#F8F8FF</color>
+    <color name="WhiteSmoke">#F5F5F5</color>
+    <color name="SeaShell">#FFF5EE</color>
+    <color name="Beige">#F5F5DC</color>
+    <color name="OldLace">#FDF5E6</color>
+    <color name="FloralWhite">#FFFAF0</color>
+    <color name="Ivory">#FFFFF0</color>
+    <color name="AntiqueWhite">#FAEBD7</color>
+    <color name="Linen">#FAF0E6</color>
+    <color name="LavenderBlush">#FFF0F5</color>
+    <color name="MistyRose">#FFE4E1</color>
+
+    <!-- Gray -->
+    <color name="Gainsboro">#DCDCDC</color>
+    <color name="LightGray">#D3D3D3</color>
+    <color name="Silver">#C0C0C0</color>
+    <color name="DarkGray">#A9A9A9</color>
+    <color name="Gray">#808080</color>
+    <color name="DimGray">#696969</color>
+    <color name="LightSlateGray">#778899</color>
+    <color name="SlateGray">#708090</color>
+    <color name="DarkSlateGray">#2F4F4F</color>
+    <color name="Black">#000000</color>
+
 
 </resources>
