@@ -27,6 +27,13 @@
     <color name="DeepPink">#FF1493</color>
     <color name="MediumVioletRed">#C71585</color>
     <color name="PaleVioletRed">#DB7093</color>
+    <color name="Amaranth">#9F2B68</color>
+    <color name="Cerise">#DE3163</color>
+    <color name="Claret">#811331</color>
+    <color name="DarkPink">#AA336A</color>
+    <color name="NeonPink">#FF10F0</color>
+    <color name="PastelPink">#F8C8DC</color>
+    <color name="PastelRed">#FAA0A0</color>
 
     <!-- Orange -->
     <color name="Coral">#FF7F50</color>
@@ -34,6 +41,33 @@
     <color name="OrangeRed">#FF4500</color>
     <color name="DarkOrange">#FF8C00</color>
     <color name="Orange">#FFA500</color>
+    <color name="Amber">#FFBF00</color>
+    <color name="Apricot">#FBCEB1</color>
+    <color name="BrightOrange">#FFAC1C</color>
+    <color name="BurntOrange">#CC5500</color>
+    <color name="Butterscotch">#E3963E</color>
+    <color name="CadmiumOrange">#F28C28</color>
+    <color name="CoralPink">#F88379</color>
+    <color name="Desert">#FAD5A5</color>
+    <color name="Gamboge">#E49B0F</color>
+    <color name="GoldenYellow">#FFC000</color>
+    <color name="LightOrange">#FFD580</color>
+    <color name="Mahogany">#C04000</color>
+    <color name="Mango">#F4BB44</color>
+    <color name="NeonOrange">#FF5F1F</color>
+    <color name="Ochre">#CC7722</color>
+    <color name="PastelOrange">#FAC898</color>
+    <color name="Peach">#FFE5B4</color>
+    <color name="Persimmon">#EC5800</color>
+    <color name="PinkOrange">#F89880</color>
+    <color name="Poppy">#E35335</color>
+    <color name="PumpkinOrange">#FF7518</color>
+    <color name="RedOrange">#FF4433</color>
+    <color name="SafetyOrange">#FF5F15</color>
+    <color name="SunsetOrange">#FA5F55</color>
+    <color name="Tangerine">#F08000</color>
+    <color name="TerraCotta">#E3735E</color>
+    <color name="YellowOrange">#FFAA33</color>
 
     <!-- Yellow -->
     <color name="Gold">#FFD700</color>
@@ -47,6 +81,21 @@
     <color name="PaleGoldenrod">#EEE8AA</color>
     <color name="Khaki">#F0E68C</color>
     <color name="DarkKhaki">#BDB76B</color>
+    <color name="BrightYellow">#FFEA00</color>
+    <color name="CadmiumYellow">#FDDA0D</color>
+    <color name="CanaryYellow">#FFFF8F</color>
+    <color name="Citrine">#E4D00A</color>
+    <color name="Cream">#FFFDD0</color>
+    <color name="Flax">#EEDC82</color>
+    <color name="Icterine">#FCF55F</color>
+    <color name="Jasmine">#F8DE7E</color>
+    <color name="LemonYellow">#FAFA33</color>
+    <color name="Maize">#FBEC5D</color>
+    <color name="MustardYellow">#FFDB58</color>
+    <color name="NaplesYellow">#FADA5E</color>
+    <color name="Nyanza">#ECFFDC</color>
+    <color name="PastelYellow">#FFFAA0</color>
+    <color name="Saffron">#F4C430</color>
 
     <!-- Purple -->
     <color name="Lavender">#E6E6FA</color>
@@ -93,9 +142,27 @@
     <color name="LightSeaGreen">#20B2AA</color>
     <color name="DarkCyan">#008B8B</color>
     <color name="Teal">#008080</color>
+    <color name="Celadon">#AFE1AF</color>
+    <color name="EmeraldGreen">#50C878</color>
+    <color name="GrassGreen">#7CFC00</color>
+    <color name="HunterGreen">#355E3B</color>
+    <color name="KellyGreen">#4CBB17</color>
+    <color name="Malachite">#0BDA51</color>
+    <color name="MintGreen">#98FB98</color>
+    <color name="NeonGreen">#0FFF50</color>
+    <color name="Pistachio">#93C572</color>
+    <color name="SeafoamGreen">#9FE2BF</color>
+    <color name="ShamrockGreen">#009E60</color>
+    <color name="Viridian">#40826D</color>
 
     <!-- Blue -->
     <color name="Aqua">#00FFFF</color>
+    <color name="BabyBlue">#89CFF0</color>
+    <color name="BlueGray">#7393B3</color>
+    <color name="BlueGreen">#088F8F</color>
+    <color name="BrightBlue">#0096FF</color>
+    <color name="CobaltBlue">#0047AB</color>
+    <color name="ElectricBlue">#7DF9FF</color>
     <color name="Cyan">#00FFFF</color>
     <color name="LightCyan">#E0FFFF</color>
     <color name="PaleTurquoise">#AFEEEE</color>
@@ -118,7 +185,13 @@
     <color name="MediumBlue">#0000CD</color>
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
+    <color name="Glaucous">#6082B6</color>
+    <color name="BlueIndigo">#3F00FF</color>
+    <color name="Iris">#3F00FF</color>
     <color name="MidnightBlue">#191970</color>
+    <color name="NeonBlue">#1F51FF</color>
+    <color name="SapphireBlue">#0F52BA</color>
+    <color name="Ultramarine">#0437F2</color>
 
     <!-- Brown -->
     <color name="Cornsilk">#FFF8DC</color>
@@ -138,6 +211,29 @@
     <color name="Sienna">#A0522D</color>
     <color name="Brown">#A52A2A</color>
     <color name="Maroon">#800000</color>
+    <color name="Almond">#EADDCA</color>
+    <color name="Brass">#E1C16E</color>
+    <color name="Bronze">#CD7F32</color>
+    <color name="Buff">#DAA06D</color>
+    <color name="Burgundy">#800020</color>
+    <color name="BurntSienna">#E97451</color>
+    <color name="BurntUmber">#6E260E</color>
+    <color name="Camel">#C19A6B</color>
+    <color name="Chestnut">#954535</color>
+    <color name="Cinnamon">#D27D2D</color>
+    <color name="Coffee">#6F4E37</color>
+    <color name="Cognac">#834333</color>
+    <color name="Copper">#B87333</color>
+    <color name="Cordovan">#814141</color>
+    <color name="DarkBrown">#5C4033</color>
+    <color name="DarkTan">#988558</color>
+    <color name="Ecru">#C2B280</color>
+    <color name="Fallow">#C19A6B</color>
+    <color name="Fawn">#E5AA70</color>
+    <color name="Garnet">#9A2A2A</color>
+    <color name="GoldenBrown">#966919</color>
+    <color name="LightBrown">#C4A484</color>
+    <color name="Mocha">#967969</color>
 
     <!-- White -->
     <color name="White">#FFFFFF</color>
@@ -169,6 +265,16 @@
     <color name="SlateGray">#708090</color>
     <color name="DarkSlateGray">#2F4F4F</color>
     <color name="Black">#000000</color>
+    <color name="AshGray">#B2BEB5</color>
+    <color name="GunmetalGray">#818589</color>
+    <color name="Pewter">#899499</color>
 
+    <!-- Black -->
+    <color name="Charcoal">#36454F</color>
+    <color name="DarkPurple">#301934</color>
+    <color name="JetBlack">#343434</color>
+    <color name="Licorice">#1B1212</color>
+    <color name="MatteBlack">#28282B</color>
+    <color name="Onyx">#353935</color>
 
 </resources>
