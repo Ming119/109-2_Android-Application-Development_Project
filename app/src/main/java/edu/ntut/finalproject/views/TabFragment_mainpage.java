@@ -8,11 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.controllers.ItemAdapter;
 
 public class TabFragment_mainpage extends Fragment {
+
     private static final String ARG_COUNT = "ARG_COUNT";
+
+    private RecyclerView recyclerView;
 
     public static TabFragment_profile_login newInstance(int counter) {
         Bundle args = new Bundle();
@@ -29,7 +34,12 @@ public class TabFragment_mainpage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_main, container, false);
+        View view = inflater.inflate(R.layout.tab_main, container, false);
+
+        recyclerView = view.findViewById(R.id.);;
+        recyclerView.setAdapter(new ItemAdapter(getContext()));
+
+        return view;
     }
 
     @Override

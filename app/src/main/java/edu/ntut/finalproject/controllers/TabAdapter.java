@@ -1,5 +1,8 @@
 package edu.ntut.finalproject.controllers;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
@@ -19,8 +22,7 @@ public class TabAdapter extends FragmentStateAdapter {
 
     static final int ITEM_COUNT = 5;
 
-    private User user = new User();
-    private boolean logedin;
+    private String uid  = null;
 
     public TabAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -29,7 +31,8 @@ public class TabAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        logedin = user.loginState();
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);;
+        //uid  = sharedPreferences.getString("UID", null);
 
         switch(position) {
             case 0: return new TabFragment_mainpage();
@@ -41,10 +44,11 @@ public class TabAdapter extends FragmentStateAdapter {
             case 3: return new TabFragment_notification();
 
             case 4:
-                if (logedin) return new TabFragment_profile_logedin();
+                if (uid ==  null) return new TabFragment_profile_logedin();
                 else return new TabFragment_profile_login();
+
+            default: return null;
         }
-        return null;
     }
 
     @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- https://htmlcolorcodes.com/color-names/ -->
-
+<!-- https://htmlcolorcodes.com/colors/ -->
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
