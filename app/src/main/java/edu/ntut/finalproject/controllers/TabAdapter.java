@@ -44,7 +44,7 @@ public class TabAdapter extends FragmentStateAdapter {
             case 3: return new TabFragment_notification();
 
             case 4:
-                if (uid ==  null) return new TabFragment_profile_logedin();
+                if (uid != null) return new TabFragment_profile_logedin();
                 else return new TabFragment_profile_login();
 
             default: return null;

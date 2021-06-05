@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void Register(View view) {
-        if (password != confirmPasword)
+        if (password.getText().toString() != confirmPasword.getText().toString())
         {
             Toast.makeText(this, "Passwords did not match.", Toast.LENGTH_SHORT);
             return;
@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         User user = new User();
 
         try {
-            isSuccess = user.Register(studentID.getContext().toString(), name.getContext().toString(), password.getContext().toString());
+            isSuccess = user.Register(studentID.getText().toString(), name.getText().toString(), password.getText().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,8 @@
 package edu.ntut.finalproject.models;
 
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +21,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Database {
-    private static final String BASE_URL = "https://140.124.184.193:8080/androidfinal/";
+    private static final String BASE_URL = "https://140.124.184.193/androidfinal/";
     private static final String UID = "uid";
     private static final String NAME = "name";
     private static final String PW = "password";
@@ -42,7 +44,7 @@ public class Database {
         urlConnection = (HttpURLConnection) requestURL.openConnection();
         urlConnection.setRequestMethod(method);
         urlConnection.connect();
-
+        Log.d("getResponseCode", String.valueOf(urlConnection.getResponseCode()));
         return urlConnection;
     }
 
@@ -95,7 +97,13 @@ public class Database {
                 .appendQueryParameter(UID, uid)
                 .build();
 
-        String res = JSON2String(connect(builtURI, GET).getInputStream());
+        URL requestURL = new URL(builtURI.toString());
+
+        urlConnection = (HttpURLConnection) requestURL.openConnection();
+        urlConnection.setRequestMethod("GET");
+        urlConnection.connect();
+
+        String res = JSON2String(urlConnection.getInputStream());
         if (res == null) return null;
         return res;
     }
@@ -241,4 +249,12 @@ public class Database {
 
         return false;
     }
+
+//    private class DownloadTask extends  {
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            return null;
+//        }
+//    }
 }

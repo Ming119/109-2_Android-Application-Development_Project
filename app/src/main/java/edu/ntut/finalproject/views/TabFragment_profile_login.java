@@ -1,6 +1,7 @@
 package edu.ntut.finalproject.views;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,6 +33,7 @@ public class TabFragment_profile_login extends Fragment {
     private Text     gotoRegister;
     private ImageView showPW;
 
+    @NonNull
     public static TabFragment_profile_login newInstance(int counter) {
         Bundle args = new Bundle();
         args.putInt(ARG_COUNT, counter);
@@ -43,7 +45,9 @@ public class TabFragment_profile_login extends Fragment {
     public TabFragment_profile_login() {
 
     }
+
     public EditText student() {return studentID; }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,7 +65,7 @@ public class TabFragment_profile_login extends Fragment {
                 User user = new User();
 
                 try {
-                    isloged = user.Login(studentID.getContext().toString(), password.getContext().toString());
+                    isloged = user.Login(studentID.getText().toString(), password.getText().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
