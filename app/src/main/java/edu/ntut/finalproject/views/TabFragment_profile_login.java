@@ -1,7 +1,12 @@
 package edu.ntut.finalproject.views;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,6 +33,9 @@ public class TabFragment_profile_login extends Fragment {
 
     private static final String ARG_COUNT = "ARG_COUNT";
 
+    private Context context;
+    private SharedPreferences sharedPreferences;
+
     private EditText studentID;
     private EditText password;
     private Button   login;
@@ -43,9 +51,7 @@ public class TabFragment_profile_login extends Fragment {
         return fragment;
     }
     
-    public TabFragment_profile_login() {
-
-    }
+    public TabFragment_profile_login() { }
 
     public EditText student() {return studentID; }
 
@@ -55,6 +61,7 @@ public class TabFragment_profile_login extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_profile_login,container,false);
 
+        sharedPreferences = context.getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
         studentID = view.findViewById(R.id.login_studentID);
         password  = view.findViewById(R.id.login_passowrd);
         login     = view.findViewById(R.id.btn_login);
@@ -73,10 +80,19 @@ public class TabFragment_profile_login extends Fragment {
                     e.printStackTrace();
                 }
 
-                if (isloged)
+                if (isloged) {
+                    SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+                    preferencesEditor.putString("UID", studentID.getText().toString());
+                    preferencesEditor.putString("USERNAME", password.getText().toString());
+                    preferencesEditor.apply();
                     Toast.makeText(getActivity(), "Login Success.", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getActivity(), "Login Failed.", Toast.LENGTH_SHORT).show();
+
+                    Intent main =  getActivity().getIntent();
+                    getActivity().finish();
+                    startActivity(main);
+
+                } else
+                    Toast.makeText(getActivity(), "Login Failed.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -88,5 +104,9 @@ public class TabFragment_profile_login extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
+    }
 }

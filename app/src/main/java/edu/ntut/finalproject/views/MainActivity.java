@@ -5,7 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -30,31 +33,32 @@ import edu.ntut.finalproject.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabLayout tabLayout;
-    ViewPager2 viewPager;
+    private SharedPreferences sharedPreferences;
+    private String uid;
+    private String name;
 
-
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sharedPreferences = getSharedPreferences("edu.ntut.finalproject.loginStatus", MODE_PRIVATE);
+        uid = sharedPreferences.getString("UID", null);
+        name = sharedPreferences.getString("USERNAME", null);
+
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
-
-
-        viewPager.setAdapter(new TabAdapter(this));
+        viewPager.setAdapter(new TabAdapter(this, uid));
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 tab.setIcon(R.drawable.ic_launcher_foreground);
             }
         }).attach();
-
-
-
 
 
     }
@@ -70,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-    /**
-     * .
-     * @param view
-     */
     public void gotoRegister(View view) {
         Intent register = new Intent(this, RegisterActivity.class);
         startActivity(register);

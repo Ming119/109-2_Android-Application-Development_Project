@@ -1,5 +1,6 @@
 package edu.ntut.finalproject.controllers;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -24,15 +25,14 @@ public class TabAdapter extends FragmentStateAdapter {
 
     private String uid  = null;
 
-    public TabAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public TabAdapter(@NonNull FragmentActivity fragmentActivity, String uid) {
         super(fragmentActivity);
+        this.uid = uid;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);;
-        //uid  = sharedPreferences.getString("UID", null);
 
         switch(position) {
             case 0: return new TabFragment_mainpage();

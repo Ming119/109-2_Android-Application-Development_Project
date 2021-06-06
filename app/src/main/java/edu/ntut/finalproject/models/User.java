@@ -5,6 +5,7 @@
 package edu.ntut.finalproject.models;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +55,7 @@ public class User {
             JSONObject user = usersArray.getJSONObject(0);
             String password = user.getString("password");
 
-            if (password == pw) return true;
+            if (password.equals(pw)) return true;
         }
 
         return false;

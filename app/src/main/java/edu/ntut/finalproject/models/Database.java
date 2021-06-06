@@ -80,9 +80,11 @@ public class Database {
 
         String line;
         while ((line = reader.readLine()) != null)
-            builder.append(line + "\n");
+            builder.append(line);
 
         if (builder.length() == 0) return null;
+
+
 
         return builder.toString();
     }
