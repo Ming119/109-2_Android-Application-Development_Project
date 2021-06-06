@@ -1,12 +1,15 @@
 package edu.ntut.finalproject.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -20,10 +23,18 @@ public class TabFragment_profile_logedin extends Fragment {
 
     private static final String ARG_COUNT = "ARG_COUNT";
 
-    Button settings_btn ;
-    Button mywallet_btn;
-    Button favourites_btn;
-    Button feedback_btn;
+    private Context context;
+    private SharedPreferences sharedPreferences;
+
+    private TextView user_name;
+    private TextView user_id;
+
+    private Button settings_btn ;
+    private Button mywallet_btn;
+    private Button change_password_btn;
+    private Button sign_out_btn;
+    private Button favourites_btn;
+    private Button feedback_btn;
 
 
     public static TabFragment_profile_login newInstance(int counter) {
@@ -48,12 +59,18 @@ public class TabFragment_profile_logedin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.tab_profile_logedin, container, false);
 
+        View view = inflater.inflate(R.layout.tab_profile_logedin,container,false);
 
-        View the_view = inflater.inflate(R.layout.tab_profile_logedin,container,false);
+        sharedPreferences = context.getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
 
-        settings_btn = the_view.findViewById(R.id.setting_btn);
+        user_name = view.findViewById(R.id.user_name);
+        user_id   = view.findViewById(R.id.user_id);
+
+        user_name.setText(sharedPreferences.getString("USERNAME", ""));
+        user_id.setText(sharedPreferences.getString("UID", ""));
+
+        settings_btn = view.findViewById(R.id.setting_btn);
         settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +81,7 @@ public class TabFragment_profile_logedin extends Fragment {
             }
         });
 
-        mywallet_btn = the_view.findViewById(R.id.wallet_btn);
+        mywallet_btn = view.findViewById(R.id.wallet_btn);
         mywallet_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +91,7 @@ public class TabFragment_profile_logedin extends Fragment {
         });
 
 
-        favourites_btn = the_view.findViewById(R.id.favourites_btn);
+        favourites_btn = view.findViewById(R.id.favourites_btn);
         favourites_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +100,23 @@ public class TabFragment_profile_logedin extends Fragment {
             }
         });
 
-        feedback_btn = the_view.findViewById(R.id.feedback);
+
+        sign_out_btn = view.findViewById(R.id.signout_btn);
+        sign_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+                preferencesEditor.clear();
+                preferencesEditor.apply();
+
+                Intent main =  getActivity().getIntent();
+                getActivity().finish();
+                startActivity(main);
+            }
+        });
+
+
+        feedback_btn = view.findViewById(R.id.feedback);
         feedback_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +125,7 @@ public class TabFragment_profile_logedin extends Fragment {
             }
         });
         
-        return the_view;
+        return view;
 
 
     }
@@ -102,7 +135,11 @@ public class TabFragment_profile_logedin extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        this.context = context;
+        super.onAttach(context);
+    }
 
 }
 

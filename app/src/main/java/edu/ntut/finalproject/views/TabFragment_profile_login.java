@@ -82,8 +82,8 @@ public class TabFragment_profile_login extends Fragment {
 
                 if (isloged) {
                     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                    preferencesEditor.putString("UID", studentID.getText().toString());
-                    preferencesEditor.putString("USERNAME", password.getText().toString());
+                    preferencesEditor.putString("UID", user.getUid());
+                    preferencesEditor.putString("USERNAME", user.getName());
                     preferencesEditor.apply();
                     Toast.makeText(getActivity(), "Login Success.", Toast.LENGTH_SHORT).show();
 

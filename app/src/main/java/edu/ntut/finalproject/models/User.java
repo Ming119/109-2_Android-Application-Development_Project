@@ -55,7 +55,12 @@ public class User {
             JSONObject user = usersArray.getJSONObject(0);
             String password = user.getString("password");
 
-            if (password.equals(pw)) return true;
+            if (password.equals(pw)) {
+                this.uid  = user.getString("uid");
+                this.name = user.getString("name");
+
+                return true;
+            }
         }
 
         return false;
