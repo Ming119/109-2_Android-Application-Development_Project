@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!(password.getText().toString().equals(confirmPasword.getText().toString()))) {
+            if (!rpw.equals(cpw)) {
                 Toast.makeText(RegisterActivity.this, "Passwords did not match", Toast.LENGTH_LONG).show();
                 return;
             }

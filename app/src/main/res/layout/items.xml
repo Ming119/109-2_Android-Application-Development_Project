@@ -21,17 +21,21 @@
 
         <TextView
             android:id="@+id/text_item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/image_item"
-            android:text="TITLE" />
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text_item_info"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_item_title"
-            android:text="TEXT" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

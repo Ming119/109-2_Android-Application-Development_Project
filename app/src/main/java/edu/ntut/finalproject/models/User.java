@@ -4,9 +4,6 @@
 
 package edu.ntut.finalproject.models;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class User {
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     private String uid;
     private String name;
@@ -22,6 +19,23 @@ public class User {
     public User() {
         uid  = null;
         name = null;
+    }
+
+    public User(String uid) {
+        this.uid = uid;
+
+        String JSONString = null;
+        try {
+            JSONString = db.getUser(uid);
+
+            JSONObject jsonObject = new JSONObject(JSONString);
+            JSONArray usersArray = jsonObject.getJSONArray("user");
+            JSONObject user = usersArray.getJSONObject(0);
+            this.name  = user.getString("name");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public User(String uid, String name) {
@@ -96,5 +110,13 @@ public class User {
      */
     public boolean EditProfile(String uid, String name, String pw) throws IOException {
         return db.updateUser(uid, name, pw);
+    }
+
+    public boolean EditProfile(String name, String pw) throws IOException {
+        if (db.updateUser(uid, name, pw)) {
+            this.name = name;
+            return true;
+        }
+        return false;
     }
 }

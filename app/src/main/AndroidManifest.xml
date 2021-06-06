@@ -14,7 +14,8 @@
         android:theme="@style/Theme.FinalProject">
 
         <activity android:name=".views.SettingActivity" />
-
+        <activity android:name=".views.ChangeUsernameActivity"/>
+        <activity android:name=".views.ChangePasswordActivity"/>
 
         <activity
             android:name=".views.MainActivity"

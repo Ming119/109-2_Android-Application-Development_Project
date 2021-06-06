@@ -30,6 +30,7 @@ public class TabFragment_profile_logedin extends Fragment {
 
     private TextView user_name;
     private TextView user_id;
+
     private TextView setting;
     private TextView change_username;
     private TextView change_password;
@@ -70,31 +71,39 @@ public class TabFragment_profile_logedin extends Fragment {
         user_name.setText(sharedPreferences.getString("USERNAME", ""));
         user_id.setText(sharedPreferences.getString("UID", ""));
 
+
+
         setting = view.findViewById(R.id.text_setting);
-        setting.setOnClickListener(new View.OnClickListener() {
+        setting.setOnClickListener(v -> {
+            Intent setting_intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(setting_intent);
+
+        });
+
+        change_username = view.findViewById(R.id.text_change_username);
+        change_username.setOnClickListener(view12 -> {
+            Intent change_username_intent = new Intent(getActivity(), ChangeUsernameActivity.class);
+            startActivity(change_username_intent);
+        });
+
+        change_password = view.findViewById(R.id.text_change_password);
+        change_password.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                Intent setting_intent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(setting_intent);
-
+            public void onClick(View view) {
+                Intent change_password_intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(change_password_intent);
             }
         });
 
-
-
         signout = view.findViewById(R.id.text_sign_out);
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                preferencesEditor.clear();
-                preferencesEditor.apply();
+        signout.setOnClickListener(view1 -> {
+            SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+            preferencesEditor.clear();
+            preferencesEditor.apply();
 
-                Intent main =  getActivity().getIntent();
-                getActivity().finish();
-                startActivity(main);
-            }
+            Intent main =  getActivity().getIntent();
+            getActivity().finish();
+            startActivity(main);
         });
 
         

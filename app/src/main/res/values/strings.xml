@@ -7,7 +7,12 @@
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
     <string name="have_an_account"><u>Already have an account?</u></string>
     <string name="do_not_have_and_account"><u>Do not have an account?</u></string>
-
+    <string name="change_username">Change Username</string>
+    <string name="new_username">New Username</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
 </resources>
