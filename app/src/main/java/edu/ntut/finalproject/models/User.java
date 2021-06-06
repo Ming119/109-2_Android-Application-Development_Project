@@ -76,7 +76,13 @@ public class User {
      * @throws IOException
      */
     public boolean Register(String uid, String name, String pw) throws IOException {
-        return db.createUser(uid, name, pw);
+        if (db.createUser(uid, name, pw)) {
+            this.uid  = uid;
+            this.name = name;
+
+            return true;
+        }
+        return false;
     }
 
     /**

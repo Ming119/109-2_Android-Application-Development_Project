@@ -1,15 +1,10 @@
 package edu.ntut.finalproject.views;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -53,8 +48,6 @@ public class TabFragment_profile_login extends Fragment {
     
     public TabFragment_profile_login() { }
 
-    public EditText student() {return studentID; }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,34 +59,48 @@ public class TabFragment_profile_login extends Fragment {
         password  = view.findViewById(R.id.login_passowrd);
         login     = view.findViewById(R.id.btn_login);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isloged = false;
-                User user = new User();
+        login.setOnClickListener((View v) -> {
 
-                try {
-                    isloged = user.Login(studentID.getText().toString(), password.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            String lid = studentID.getText().toString();
+            String lpw = password.getText().toString();
 
-                if (isloged) {
-                    SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                    preferencesEditor.putString("UID", user.getUid());
-                    preferencesEditor.putString("USERNAME", user.getName());
-                    preferencesEditor.apply();
-                    Toast.makeText(getActivity(), "Login Success.", Toast.LENGTH_SHORT).show();
-
-                    Intent main =  getActivity().getIntent();
-                    getActivity().finish();
-                    startActivity(main);
-
-                } else
-                    Toast.makeText(getActivity(), "Login Failed.", Toast.LENGTH_LONG).show();
+            if (lid.equals("")) {
+                Toast.makeText(getActivity(), "Student ID cannot be empty", Toast.LENGTH_LONG).show();
+                return;
             }
+
+            if (lid.length() != 9) {
+                Toast.makeText(getActivity(), "Student ID format error", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (lpw.equals("")) {
+                Toast.makeText(getActivity(), "Password cannot be empty", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            boolean isloged = false;
+            User user = new User();
+
+            try {
+                isloged = user.Login(lid, lpw);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (isloged) {
+                Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+
+                SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+                preferencesEditor.putString("UID", user.getUid());
+                preferencesEditor.putString("USERNAME", user.getName());
+                preferencesEditor.apply();
+
+                Intent main =  getActivity().getIntent();
+                getActivity().finish();
+                startActivity(main);
+
+            } else
+                Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_LONG).show();
         });
 
         return view;

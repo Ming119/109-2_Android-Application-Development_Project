@@ -126,8 +126,6 @@ public class TabFragment_profile_logedin extends Fragment {
         });
         
         return view;
-
-
     }
 
     @Override

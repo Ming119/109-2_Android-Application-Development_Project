@@ -27,7 +27,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         this.context = context;
 
         Item item = new Item();
-        /*
+
         try {
             this.itemArray = item.getItems();
         } catch (IOException e) {
@@ -35,7 +35,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        */
 
     }
 
