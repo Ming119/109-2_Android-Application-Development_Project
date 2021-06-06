@@ -16,12 +16,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class Database {
-    private static final String BASE_URL = "https://140.124.184.193/androidfinal/";
+    private static final String BASE_URL = "http://140.124.184.193:8080/androidfinal/";
     private static final String UID = "uid";
     private static final String NAME = "name";
     private static final String PW = "password";
@@ -33,19 +38,39 @@ public class Database {
     private static final String GET = "GET";
     private static final String POST = "POST";
 
-    HttpURLConnection urlConnection = null;
-    BufferedReader reader = null;
+    private ExecutorService executorService;
+    private HttpURLConnection urlConnection = null;
+    private BufferedReader reader = null;
 
     public Database() { }
 
-    private HttpURLConnection connect(@NonNull Uri uri, String method) throws IOException{
-        URL requestURL = new URL(uri.toString());
+    private void connect(@NonNull Uri uri, String method) {
+        executorService= Executors.newFixedThreadPool(4);
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    URL requestURL = new URL(uri.toString());
 
-        urlConnection = (HttpURLConnection) requestURL.openConnection();
-        urlConnection.setRequestMethod(method);
-        urlConnection.connect();
-        Log.d("getResponseCode", String.valueOf(urlConnection.getResponseCode()));
-        return urlConnection;
+                    urlConnection = (HttpURLConnection) requestURL.openConnection();
+                    urlConnection.setRequestMethod(method);
+                    urlConnection.connect();
+                    Log.d("Respone", String.valueOf(urlConnection.getResponseCode()));
+
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }});
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Nullable
@@ -72,6 +97,7 @@ public class Database {
      * @throws IOException
      */
     public boolean createUser(String uid, String name, String pw) throws IOException {
+
         String url = BASE_URL + "CreateUser?";
         Uri builtURI = Uri.parse(url).buildUpon()
                 .appendQueryParameter(UID, uid)
@@ -79,7 +105,9 @@ public class Database {
                 .appendQueryParameter(PW, pw)
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
@@ -97,11 +125,7 @@ public class Database {
                 .appendQueryParameter(UID, uid)
                 .build();
 
-        URL requestURL = new URL(builtURI.toString());
-
-        urlConnection = (HttpURLConnection) requestURL.openConnection();
-        urlConnection.setRequestMethod("GET");
-        urlConnection.connect();
+        connect(builtURI, GET);
 
         String res = JSON2String(urlConnection.getInputStream());
         if (res == null) return null;
@@ -125,7 +149,9 @@ public class Database {
                 .appendQueryParameter(PW, pw)
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
@@ -150,7 +176,9 @@ public class Database {
                 .appendQueryParameter(UID, uid)
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
@@ -165,7 +193,9 @@ public class Database {
         String url = BASE_URL + "GetItem";
         Uri builtURI = Uri.parse(url).buildUpon().build();
 
-        String res = JSON2String(connect(builtURI, GET).getInputStream());
+        connect(builtURI, GET);
+
+        String res = JSON2String(urlConnection.getInputStream());
         if (res == null) return null;
         return res;
     }
@@ -182,7 +212,9 @@ public class Database {
                 .appendQueryParameter(ID, String.valueOf(id))
                 .build();
 
-        String res = JSON2String(connect(builtURI, GET).getInputStream());
+        connect(builtURI, GET);
+
+        String res = JSON2String(urlConnection.getInputStream());
         if (res == null) return null;
         return res;
     }
@@ -206,7 +238,9 @@ public class Database {
                 .appendQueryParameter(PRICE, String.valueOf(price))
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
@@ -225,7 +259,9 @@ public class Database {
                 .appendQueryParameter(ID, String.valueOf(id))
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
@@ -244,17 +280,12 @@ public class Database {
                 .appendQueryParameter(ID, String.valueOf(id))
                 .build();
 
-        if (connect(builtURI, POST).getResponseCode() == HttpsURLConnection.HTTP_OK)
+        connect(builtURI, POST);
+
+        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
             return true;
 
         return false;
     }
 
-//    private class DownloadTask extends  {
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            return null;
-//        }
-//    }
 }
