@@ -1,6 +1,7 @@
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,14 +47,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Item currnteItem = itemArray.get(position);
-        holder.bindTo(currnteItem);
+        Log.d("position", String.valueOf(position));
+
+        Item currentItem = itemArray.get(position);
+
+        holder.bindTo(currentItem);
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
-    }
+    public int getItemCount() { return itemArray.size(); }
+
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -71,10 +74,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
         }
 
-        public void bindTo(Item item) {
-            // itemImage.setImageDrawable();
+        public void bindTo(@NonNull Item item) {
+            itemImage.setImageResource(R.drawable.was);
             itemTitle.setText(item.getTitle());
             itemInfo.setText(item.getDescription());
+
         }
 
         @Override

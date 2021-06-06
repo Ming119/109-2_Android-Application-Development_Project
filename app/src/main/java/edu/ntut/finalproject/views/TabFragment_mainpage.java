@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
@@ -36,8 +37,11 @@ public class TabFragment_mainpage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_main, container, false);
 
+        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
+
         recyclerView = view.findViewById(R.id.recyclerView);;
-        recyclerView.setAdapter(new ItemAdapter(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), gridColumnCount));
+        recyclerView.setAdapter(new ItemAdapter(getActivity()));
 
         return view;
     }

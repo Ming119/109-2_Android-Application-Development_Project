@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Item {
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     private int     id;
     private String  title;
@@ -63,7 +63,7 @@ public class Item {
         String JSONString = db.getItems();
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray itemsArray = jsonObject.getJSONArray("item");
+        JSONArray itemsArray = jsonObject.getJSONArray("items");
 
         ArrayList items = new ArrayList<Item>();
         if (itemsArray == null) return null;
