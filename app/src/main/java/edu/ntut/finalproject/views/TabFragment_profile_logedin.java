@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import org.w3c.dom.Text;
+
 import edu.ntut.finalproject.R;
 
 public class TabFragment_profile_logedin extends Fragment {
@@ -28,14 +30,12 @@ public class TabFragment_profile_logedin extends Fragment {
 
     private TextView user_name;
     private TextView user_id;
-
-    private Button settings_btn ;
-    private Button mywallet_btn;
-    private Button change_password_btn;
-    private Button sign_out_btn;
-    private Button favourites_btn;
-    private Button feedback_btn;
-
+    private TextView setting;
+    private TextView change_username;
+    private TextView change_password;
+    private TextView signout;
+    private TextView contribution;
+    private TextView version_info;
 
     public static TabFragment_profile_login newInstance(int counter) {
         Bundle args = new Bundle();
@@ -70,8 +70,8 @@ public class TabFragment_profile_logedin extends Fragment {
         user_name.setText(sharedPreferences.getString("USERNAME", ""));
         user_id.setText(sharedPreferences.getString("UID", ""));
 
-        settings_btn = view.findViewById(R.id.setting_btn);
-        settings_btn.setOnClickListener(new View.OnClickListener() {
+        setting = view.findViewById(R.id.text_setting);
+        setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -81,28 +81,10 @@ public class TabFragment_profile_logedin extends Fragment {
             }
         });
 
-        mywallet_btn = view.findViewById(R.id.wallet_btn);
-        mywallet_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mywallet_intent = new Intent(getActivity(),MyWalletActivity.class);
-                startActivity(mywallet_intent);
-            }
-        });
 
 
-        favourites_btn = view.findViewById(R.id.favourites_btn);
-        favourites_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent favourite_intent = new Intent(getActivity(),FavouritesActivity.class);
-                startActivity(favourite_intent);
-            }
-        });
-
-
-        sign_out_btn = view.findViewById(R.id.signout_btn);
-        sign_out_btn.setOnClickListener(new View.OnClickListener() {
+        signout = view.findViewById(R.id.text_sign_out);
+        signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
@@ -115,15 +97,6 @@ public class TabFragment_profile_logedin extends Fragment {
             }
         });
 
-
-        feedback_btn = view.findViewById(R.id.feedback);
-        feedback_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent feedback_intent = new Intent(getActivity(),FeedbackActivity.class);
-                startActivity(feedback_intent);
-            }
-        });
         
         return view;
     }

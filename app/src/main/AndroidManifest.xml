@@ -14,9 +14,6 @@
         android:theme="@style/Theme.FinalProject">
 
         <activity android:name=".views.SettingActivity" />
-        <activity android:name=".views.FeedbackActivity" />
-        <activity android:name=".views.FavouritesActivity" />
-        <activity android:name=".views.MyWalletActivity" />
 
 
         <activity
