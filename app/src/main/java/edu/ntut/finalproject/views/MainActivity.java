@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import edu.ntut.finalproject.controllers.TabAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+
     private String uid;
     private String name;
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         viewPager.setAdapter(new TabAdapter(this, uid));
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setIcon(R.drawable.ic_launcher_foreground)).attach();
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.getText()).attach();
 
     }
 
@@ -52,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default: break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void gotoRegister(View view) {
