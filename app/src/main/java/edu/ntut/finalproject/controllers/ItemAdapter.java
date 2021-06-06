@@ -47,10 +47,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("position", String.valueOf(position));
-
         Item currentItem = itemArray.get(position);
-
         holder.bindTo(currentItem);
     }
 

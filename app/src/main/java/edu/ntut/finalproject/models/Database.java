@@ -41,6 +41,7 @@ public class Database {
     private ExecutorService executorService;
     private HttpURLConnection urlConnection = null;
     private BufferedReader reader = null;
+    private InputStream    response = null;
 
     public Database() { }
 
@@ -55,7 +56,9 @@ public class Database {
                     urlConnection = (HttpURLConnection) requestURL.openConnection();
                     urlConnection.setRequestMethod(method);
                     urlConnection.connect();
-                    Log.d("Respone", String.valueOf(urlConnection.getResponseCode()));
+
+                    if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK)
+                        response = urlConnection.getInputStream();
 
                 } catch (ProtocolException e) {
                     e.printStackTrace();
@@ -129,7 +132,7 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(urlConnection.getInputStream());
+        String res = JSON2String(response);
         if (res == null) return null;
         return res;
     }
@@ -197,7 +200,7 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(urlConnection.getInputStream());
+        String res = JSON2String(response);
         if (res == null) return null;
         return res;
     }
@@ -216,7 +219,7 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(urlConnection.getInputStream());
+        String res = JSON2String(response);
         if (res == null) return null;
         return res;
     }

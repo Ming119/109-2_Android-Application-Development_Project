@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class TabFragment_profile_logedin extends Fragment {
     private TextView contribution;
     private TextView version_info;
 
+    @NonNull
     public static TabFragment_profile_login newInstance(int counter) {
         Bundle args = new Bundle();
         args.putInt(ARG_COUNT, counter);
@@ -106,6 +108,22 @@ public class TabFragment_profile_logedin extends Fragment {
             startActivity(main);
         });
 
+        contribution = view.findViewById(R.id.text_contribution);
+        contribution.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContributionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        version_info = view.findViewById(R.id.text_version_info);
+        version_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), getString(R.string.version), Toast.LENGTH_LONG).show();
+            }
+        });
         
         return view;
     }

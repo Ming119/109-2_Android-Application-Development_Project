@@ -70,7 +70,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
             User user = new User(sharedPreferences.getString("UID", null));
             try {
-                if(user.EditProfile(sharedPreferences.getString("NAME", null), npw)) {
+                if(user.EditProfile(sharedPreferences.getString("USERNAME", null), npw)) {
                     Toast.makeText(ChangePasswordActivity.this, "Password Changed!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
