@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@color/DimGray"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    app:cardBackgroundColor="@color/DimGray">
+    android:layout_margin="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/DimGray">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image_item"
@@ -29,10 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/image_item"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textColor="@color/White"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:textSize="24sp" />
 
         <TextView
@@ -40,10 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_item_title"
-            android:layout_marginBottom="8dp"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:textColor="@color/White"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:textSize="14sp" />
 
     </RelativeLayout>

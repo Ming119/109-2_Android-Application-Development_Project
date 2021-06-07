@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/JetBlack"
+    android:forceDarkAllowed="false"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_Login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:text="@string/login"
+                android:textColor="@color/White"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:textColorHint="@color/LightGray"
+                app:boxStrokeColor="@color/LightGray"
+                app:hintTextColor="@color/LightGray">
+
+                <EditText
+                    android:id="@+id/login_studentID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:autofillHints="@string/studentID"
+                    android:background="@color/JetBlack"
+                    android:ems="16"
+                    android:hint="@string/studentID"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/White" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:textColorHint="@color/LightGray"
+                app:boxStrokeColor="@color/LightGray"
+                app:hintTextColor="@color/LightGray"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/LightGray">
+
+                <EditText
+                    android:id="@+id/login_passowrd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/password"
+                    android:background="@color/JetBlack"
+                    android:ems="16"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/White" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:maxEms="16"
+                android:minEms="8"
+                android:text="@string/login"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/text_gotoRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:onClick="gotoRegister"
+                android:text="@string/do_not_have_and_account"
+                android:textColor="@color/LightGray" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
