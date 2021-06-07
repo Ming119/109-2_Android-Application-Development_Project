@@ -1,7 +1,6 @@
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,15 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
+    private final Context context;
+
     private ArrayList<Item> itemArray;
-    private Context context;
 
     public ItemAdapter(Context context) {
         this.context = context;
@@ -44,21 +43,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.items, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.tab_main_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (itemArray == null) {
-            Toast.makeText(context, "Please connect to the VPN", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Item currentItem = itemArray.get(position);
-        holder.bindTo(currentItem);
+        if (itemArray == null) return;
+        holder.bindTo(itemArray.get(position));
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -66,9 +58,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         return itemArray.size();
     }
 
-
-
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    protected class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView itemImage;
         private TextView  itemTitle;
@@ -84,16 +74,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+
+        }
+
         public void bindTo(@NonNull Item item) {
             itemImage.setImageResource(R.drawable.was);
             itemTitle.setText(item.getTitle());
             itemInfo.setText(item.getDescription());
-
-        }
-
-        @Override
-        public void onClick(View v) {
-
         }
     }
 

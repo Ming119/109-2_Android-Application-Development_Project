@@ -84,8 +84,6 @@ public class Database {
 
         if (builder.length() == 0) return null;
 
-
-
         return builder.toString();
     }
 

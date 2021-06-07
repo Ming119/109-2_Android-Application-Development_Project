@@ -21,20 +21,12 @@ import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.controllers.ChatTabAdapter;
 import edu.ntut.finalproject.models.Item;
 
-public class TabFragment_notification extends Fragment {
+public class Notification_Tab extends Fragment {
 
-    private static final String ARG_COUNT = "ARG_COUNT";
+    private ArrayList<Item> itemArray;
 
-    public static TabFragment_profile_login newInstance(int counter) {
-        Bundle args = new Bundle();
-        args.putInt(ARG_COUNT, counter);
-        TabFragment_profile_login fragment = new TabFragment_profile_login();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public TabFragment_notification() {
-
+    public Notification_Tab() {
+        //this.itemArray = itemArray;
     }
 
     @Nullable
@@ -44,12 +36,6 @@ public class TabFragment_notification extends Fragment {
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
         String uid = sharedPreferences.getString("UID", null);
-
-        TabLayout tabLayout  = view.findViewById(R.id.nofication_tabLayer);
-        ViewPager2 viewPager = view.findViewById(R.id.notification_viewPager);
-
-        viewPager.setAdapter(new ChatTabAdapter(getActivity(), uid));
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> { }).attach();
 
         return view;
     }

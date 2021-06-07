@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         viewPager.setAdapter(new TabAdapter(this, uid));
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.getText()).attach();
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> { }).attach();
 
     }
 

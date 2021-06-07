@@ -1,15 +1,10 @@
 package edu.ntut.finalproject.controllers;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import edu.ntut.finalproject.views.MainActivity;
 import edu.ntut.finalproject.views.TabFragment_mainpage;
 import edu.ntut.finalproject.views.TabFragment_notification;
 import edu.ntut.finalproject.views.TabFragment_post_item;
@@ -21,7 +16,7 @@ public class TabAdapter extends FragmentStateAdapter {
 
     static final int ITEM_COUNT = 5;
 
-    private String uid  = null;
+    private final String uid;
 
     public TabAdapter(@NonNull FragmentActivity fragmentActivity, String uid) {
         super(fragmentActivity);
@@ -38,16 +33,16 @@ public class TabAdapter extends FragmentStateAdapter {
             case 1: return new TabFragment_search();
 
             case 2:
-                if (uid == null) {
-                    return new TabFragment_profile_login();
-                } else return new TabFragment_post_item();
+                if (uid == null) return new TabFragment_profile_login();
+                return new TabFragment_post_item();
 
-            case 3: return new TabFragment_notification();
+            case 3:
+                if (uid == null) return new TabFragment_profile_login();
+                return new TabFragment_notification();
 
             case 4:
                 if (uid == null) return new TabFragment_profile_login();
-                else return new TabFragment_profile_logedin();
-
+                return new TabFragment_profile_logedin();
             default: return null;
         }
     }
