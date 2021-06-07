@@ -56,8 +56,8 @@ public class Item {
     /**
      * Get all item
      * @return An ArrayList of all Item
-     * @throws IOException
-     * @throws JSONException
+     * @throws IOException Connection Error
+     * @throws JSONException Connection Error
      */
     public ArrayList<Item> getItems() throws IOException, JSONException {
         String JSONString = db.getItems();
@@ -65,10 +65,9 @@ public class Item {
 
         JSONObject jsonObject = new JSONObject(JSONString);
         JSONArray itemsArray = jsonObject.getJSONArray("items");
-
-        ArrayList items = new ArrayList<Item>();
         if (itemsArray == null) return null;
 
+        ArrayList items = new ArrayList<Item>();
         for (int i = 0; i < itemsArray.length(); i++) {
             JSONObject item = itemsArray.getJSONObject(i);
 
@@ -87,10 +86,10 @@ public class Item {
 
     /**
      * Get an item by id
-     * @param id
+     * @param id int
      * @return An Item
-     * @throws IOException
-     * @throws JSONException
+     * @throws IOException Connection Error
+     * @throws JSONException Connection Error
      */
     public Item getItem(int id) throws IOException, JSONException {
         String JSONString = db.getItem(id);
@@ -98,10 +97,7 @@ public class Item {
         JSONObject jsonObject = new JSONObject(JSONString);
         JSONArray itemsArray = jsonObject.getJSONArray("item");
 
-        if (itemsArray == null) return null;
-
         JSONObject item = itemsArray.getJSONObject(0);
-
         int     iid    = Integer.parseInt(item.getString("id"));
         String  ititle = item.getString("title");
         String  idesc  = item.getString("description");
@@ -114,13 +110,12 @@ public class Item {
 
     /**
      * Create a new item
-     * @param title
-     * @param desc
-     * @param price
-     * @param uid
-     * @return true if create success
-     * @return false if create failed
-     * @throws IOException
+     * @param title String
+     * @param desc  String
+     * @param price int
+     * @param uid   String
+     * @return true if create success, false if create failed
+     * @throws IOException Connection Error
      */
     public boolean newItem(String title, String desc, int price, String uid) throws IOException {
         return db.createItem(title, desc, price, uid);
@@ -128,13 +123,12 @@ public class Item {
 
     /**
      * Update the title, description and price of an item by id
-     * @param id
-     * @param title
-     * @param desc
-     * @param price
-     * @return true if update success
-     * @return false if update failed
-     * @throws IOException
+     * @param id    int
+     * @param title String
+     * @param desc  String
+     * @param price int
+     * @return true if update success, false if update failed
+     * @throws IOException Connection Error
      */
     public boolean updateItem(int id, String title, String desc, int price) throws IOException {
         return db.updateItem(id, title, desc, price);
@@ -142,10 +136,9 @@ public class Item {
 
     /**
      * Change the status of sold of an item by id
-     * @param id
-     * @return true if change success
-     * @return false if change failed
-     * @throws IOException
+     * @param id int
+     * @return true if change success, false if change failed
+     * @throws IOException Connection Error
      */
     public boolean itemSold(int id) throws IOException {
         return db.updateItem(id);
@@ -153,10 +146,9 @@ public class Item {
 
     /**
      * Delete an item by id
-     * @param id
-     * @return true if delete success
-     * @return false if delete failed
-     * @throws IOException
+     * @param id int
+     * @return true if delete success,  false if delete failed
+     * @throws IOException Connection Error
      */
     public boolean deleteItem(int id) throws IOException {
         return db.deleteItem(id);

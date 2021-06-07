@@ -5,8 +5,6 @@
 package edu.ntut.finalproject.models;
 
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,48 +24,47 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Database {
-    private static final String BASE_URL = "http://140.124.184.193:8080/androidfinal/";
-    private static final String UID = "uid";
-    private static final String NAME = "name";
-    private static final String PW = "password";
-    private static final String ID = "id";
-    private static final String TITLE = "title";
-    private static final String DESC = "description";
-    private static final String PRICE = "price";
-    private static final String SOLD = "sold";
-    private static final String GET = "GET";
-    private static final String POST = "POST";
+    private final String BASE_URL = "http://140.124.184.193:8080/androidfinal/";
+    private final String UID     = "uid";
+    private final String NAME    = "name";
+    private final String PW      = "password";
+    private final String ID      = "id";
+    private final String TITLE   = "title";
+    private final String DESC    = "desc";
+    private final String PRICE   = "price";
+    private final String FROMUID = "fromUID";
+    private final String TOUID   = "toUID";
+    private final String MSG     = "message";
+    private final String RCID    = "rcid";
+    private final String GET     = "GET";
+    private final String POST    = "POST";
 
-    private ExecutorService executorService;
     private HttpURLConnection urlConnection = null;
-    private BufferedReader reader = null;
     private InputStream    response = null;
 
     public Database() { }
 
     private void connect(@NonNull Uri uri, String method) {
-        executorService= Executors.newFixedThreadPool(4);
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                try  {
-                    URL requestURL = new URL(uri.toString());
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        executorService.execute(() -> {
+            try  {
+                URL requestURL = new URL(uri.toString());
 
-                    urlConnection = (HttpURLConnection) requestURL.openConnection();
-                    urlConnection.setRequestMethod(method);
-                    urlConnection.connect();
+                urlConnection = (HttpURLConnection) requestURL.openConnection();
+                urlConnection.setRequestMethod(method);
+                urlConnection.connect();
 
-                    if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK)
-                        response = urlConnection.getInputStream();
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK)
+                    response = urlConnection.getInputStream();
 
-                } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }});
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         executorService.shutdown();
         try {
             executorService.awaitTermination(1, TimeUnit.SECONDS);
@@ -78,7 +75,7 @@ public class Database {
 
     @Nullable
     private String JSON2String(@NonNull InputStream json) throws IOException{
-        reader = new BufferedReader(new InputStreamReader(json));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(json));
         StringBuilder builder = new StringBuilder();
 
         String line;
@@ -94,12 +91,11 @@ public class Database {
 
     /**
      * Create a new user to the database
-     * @param uid
-     * @param name
-     * @param pw
-     * @return true if user create success
-     * @return false if user create failed
-     * @throws IOException
+     * @param uid   String
+     * @param name  String
+     * @param pw    String
+     * @return true if user create success, false if user create failed
+     * @throws IOException Connection Error
      */
     public boolean createUser(String uid, String name, String pw) throws IOException {
 
@@ -112,17 +108,14 @@ public class Database {
 
         connect(builtURI, POST);
 
-        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-            return true;
-
-        return false;
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
 
     /**
      * Get a user from the database by uid
-     * @param uid
+     * @param uid String
      * @return JSON like String
-     * @throws IOException
+     * @throws IOException Connection Error
      */
     public String getUser(String uid)  throws IOException {
         String url = BASE_URL + "GetUser?";
@@ -133,8 +126,7 @@ public class Database {
         connect(builtURI, GET);
 
         if (response != null) {
-            String res = JSON2String(response);
-            return res;
+            return JSON2String(response);
         }
 
         return null;
@@ -142,12 +134,11 @@ public class Database {
 
     /**
      * Update the name and password of a user from the database by uid
-     * @param uid
-     * @param name
-     * @param pw
-     * @return true if user update success
-     * @return false if user update failed
-     * @throws IOException
+     * @param uid   String
+     * @param name  String
+     * @param pw    String
+     * @return true if user update success, false if user update failed
+     * @throws IOException Connection Error
      */
     public boolean updateUser(String uid, String name, String pw) throws IOException {
         String url = BASE_URL + "UpdateUser?";
@@ -159,21 +150,17 @@ public class Database {
 
         connect(builtURI, POST);
 
-        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-            return true;
-
-        return false;
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
 
     /**
      * Create a new item to the database
-     * @param title
-     * @param desc
-     * @param price
-     * @param uid
-     * @return true if item create success
-     * @return false if item create failed
-     * @throws IOException
+     * @param title     String
+     * @param desc      Stromg
+     * @param price     omt
+     * @param uid       String
+     * @return true if item create success, false if item create failed
+     * @throws IOException Connection Error
      */
     public boolean createItem(String title, String desc, int price, String uid) throws IOException {
         String url = BASE_URL + "CreateItem?";
@@ -186,16 +173,13 @@ public class Database {
 
         connect(builtURI, POST);
 
-        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-            return true;
-
-        return false;
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
 
     /**
      * Get all items from the database
      * @return JSON like String
-     * @throws IOException
+     * @throws IOException Connection Error
      */
     public String getItems() throws IOException {
         String url = BASE_URL + "GetItem";
@@ -204,8 +188,7 @@ public class Database {
         connect(builtURI, GET);
 
         if (response != null) {
-            String res = JSON2String(response);
-            return res;
+            return JSON2String(response);
         }
 
         return null;
@@ -213,9 +196,9 @@ public class Database {
 
     /**
      * Get an item from the database by id
-     * @param id
+     * @param id    int
      * @return JSON like String
-     * @throws IOException
+     * @throws IOException Connection Error
      */
     public String getItem(int id) throws IOException {
         String url = BASE_URL + "GetItem?";
@@ -226,8 +209,7 @@ public class Database {
         connect(builtURI, GET);
 
         if (response != null) {
-            String res = JSON2String(response);
-            return res;
+            return JSON2String(response);
         }
 
         return null;
@@ -235,13 +217,12 @@ public class Database {
 
     /**
      * Update the title, description and price of an item from the database by id
-     * @param id
-     * @param title
-     * @param desc
-     * @param price
-     * @return true if update success
-     * @retrun false if update failed
-     * @throws IOException
+     * @param id        int
+     * @param title     String
+     * @param desc      String
+     * @param price     int
+     * @return true if update success, false if update failed
+     * @throws IOException Connection Error
      */
     public boolean updateItem(int id, String title, String desc, int price) throws IOException {
         String url = BASE_URL + "UpdateItem?";
@@ -254,18 +235,14 @@ public class Database {
 
         connect(builtURI, POST);
 
-        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-            return true;
-
-        return false;
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
 
     /**
      * Update the sold status of an item from the database by id
-     * @param id
-     * @return true if update success
-     * @return false if update failed
-     * @throws IOException
+     * @param id int
+     * @return true if update success, false if update failed
+     * @throws IOException Connection Error
      */
     public boolean updateItem(int id) throws IOException {
         String url = BASE_URL + "UpdateItem?";
@@ -283,10 +260,9 @@ public class Database {
 
     /**
      * Delete an item from the datqbase by id
-     * @param id
-     * @return true if delete success
-     * @return false if delete failed
-     * @throws IOException
+     * @param id int
+     * @return true if delete success, false if delete failed
+     * @throws IOException Connection Error
      */
     public boolean deleteItem(int id) throws IOException {
         String url = BASE_URL + "DeleteItem?";
@@ -296,10 +272,65 @@ public class Database {
 
         connect(builtURI, POST);
 
-        if (urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK)
-            return true;
-
-        return false;
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
 
+    /**
+     *
+     * @param from      String
+     * @param to        String
+     * @param message   String
+     * @return true if chat record create success, false if item create failed
+     * @throws IOException Connection Error
+     */
+    public boolean createChat(String from, String to, String message) throws IOException {
+        String url = BASE_URL + "CreateChatRecord?";
+        Uri builtBRI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(FROMUID, from)
+                .appendQueryParameter(TOUID, to)
+                .appendQueryParameter(MSG, message)
+                .build();
+
+        connect(builtBRI, POST);
+
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
+    }
+
+    /**
+     *
+     * @param uid String
+     * @return JSON like String
+     * @throws IOException Connection Error
+     */
+    public String getChats(String uid) throws IOException {
+        String url = BASE_URL + "GetChatRecord?";
+        Uri builtURI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(UID, uid)
+                .build();
+
+        connect(builtURI, GET);
+
+        if (response != null) {
+            return JSON2String(response);
+        }
+
+        return null;
+    }
+
+    /**
+     *
+     * @param rcid int
+     * @return true if delete success, false if delete failed
+     * @throws IOException Connection Error
+     */
+    public boolean deleteChat(int rcid) throws IOException {
+        String url = BASE_URL + "DeleteChatRecord?";
+        Uri builtURI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(RCID, String.valueOf(rcid))
+                .build();
+
+        connect(builtURI, POST);
+
+        return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
+    }
 }

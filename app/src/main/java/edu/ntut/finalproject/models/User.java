@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class User {
+
     private static final Database db = new Database();
 
     private String uid;
