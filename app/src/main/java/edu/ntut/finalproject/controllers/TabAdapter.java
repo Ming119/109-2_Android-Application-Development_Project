@@ -1,9 +1,5 @@
 package edu.ntut.finalproject.controllers;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +7,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import edu.ntut.finalproject.models.User;
 import edu.ntut.finalproject.views.TabFragment_mainpage;
 import edu.ntut.finalproject.views.TabFragment_notification;
-import edu.ntut.finalproject.views.TabFragment_post;
+import edu.ntut.finalproject.views.TabFragment_post_item;
 import edu.ntut.finalproject.views.TabFragment_profile_logedin;
 import edu.ntut.finalproject.views.TabFragment_profile_login;
 import edu.ntut.finalproject.views.TabFragment_search;
@@ -39,7 +34,7 @@ public class TabAdapter extends FragmentStateAdapter {
 
             case 1: return new TabFragment_search();
 
-            case 2: return new TabFragment_post();
+            case 2: return new TabFragment_post_item();
 
             case 3: return new TabFragment_notification();
 

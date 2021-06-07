@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import edu.ntut.finalproject.R;
 
-public class TabFragment_post extends Fragment {
+public class TabFragment_post_item extends Fragment {
     private static final String ARG_COUNT = "ARG_COUNT";
 
     public static TabFragment_profile_login newInstance(int counter) {
@@ -22,14 +22,14 @@ public class TabFragment_post extends Fragment {
         return fragment;
     }
 
-    public TabFragment_post() {
+    public TabFragment_post_item() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_main, container, false);
+        return inflater.inflate(R.layout.tab_post_item, container, false);
     }
 
     @Override

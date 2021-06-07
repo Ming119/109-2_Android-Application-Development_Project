@@ -61,6 +61,7 @@ public class Item {
      */
     public ArrayList<Item> getItems() throws IOException, JSONException {
         String JSONString = db.getItems();
+        if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);
         JSONArray itemsArray = jsonObject.getJSONArray("items");

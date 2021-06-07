@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
@@ -47,12 +49,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if (itemArray == null) {
+            Toast.makeText(context, "Please connect to the VPN", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         Item currentItem = itemArray.get(position);
         holder.bindTo(currentItem);
     }
 
+
+
     @Override
-    public int getItemCount() { return itemArray.size(); }
+    public int getItemCount() {
+        if (itemArray == null) return 0;
+        return itemArray.size();
+    }
+
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -1,6 +1,14 @@
 package db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DB {
 	
@@ -8,6 +16,8 @@ public class DB {
 	private final String database = System.getenv("dbConnectionUrl2");
 	private final String username = System.getenv("dbUsername");
 	private final String password = System.getenv("dbPassword");
+	
+	private final DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 	private Connection connection;
 
@@ -183,7 +193,7 @@ public class DB {
 		ResultSet resultSet = null;
 		
 		try {
-			String sql = "SELECT * FROM books";
+			String sql = "SELECT * FROM books WHERE sold=false";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			
@@ -293,4 +303,97 @@ public class DB {
 		return false;
 	}
 	
+	public boolean CreateChatRecord(String from, String to, String message) {
+		connect();
+		
+		try {
+			String sql = "INSERT INTO chatRecord (fromUID, toUID, message) VALUES (?, ?, ?)";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, from);
+			statement.setString(2, to);
+			statement.setString(3, message);
+			
+			int result = statement.executeUpdate();
+			if (result > 0) {
+				System.out.println("Insert Chat Record Success!");
+				return true;
+			}
+			
+			System.out.println("Insert Chat Record Failed!");
+			
+		} catch(SQLException e) {
+			System.err.println("SQLException: " + e.getMessage());
+			System.err.println("SQLState: " + e.getSQLState());
+			System.err.println("VendorError: " + e.getErrorCode());
+		}
+		
+		return false;
+	}
+	
+	public ResultSet ReadChatRecords() {
+		connect();
+		
+		ResultSet resultSet = null;
+		
+		try {
+			String sql = "SELECT * FROM chatRecord";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			
+		} catch(SQLException e) {
+			System.err.println("SQLException: " + e.getMessage());
+			System.err.println("SQLState: " + e.getSQLState());
+			System.err.println("VendorError: " + e.getErrorCode());
+		}
+		
+		return resultSet;
+	}
+	
+	public ResultSet ReadChatRecord(String uid) {
+		connect();
+		ResultSet resultSet = null;
+		
+		try {
+			String sql = "SELECT * FROM chatRecord WHERE fromUID=? OR toUID=?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, uid);
+			statement.setString(2, uid);
+			
+			resultSet = statement.executeQuery();
+			
+		} catch(SQLException e) {
+			System.err.println("SQLException: " + e.getMessage());
+			System.err.println("SQLState: " + e.getSQLState());
+			System.err.println("VendorError: " + e.getErrorCode());
+		}
+		
+		return resultSet;
+	}
+	
+	public boolean DeleteChatRecord(int crid) {
+		connect();
+		
+		try {
+			String sql = "DELETE FROM chatRecord WHERE crid=?";
+			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, crid);
+
+			int result = statement.executeUpdate();
+			if (result > 0) {
+				System.out.println("Delete Chat Record Success");
+				return true;
+			}
+			
+			System.out.println("Delete Chat Record Failed!");
+			
+		} catch (SQLException e) {
+			System.err.println("SQLException: " + e.getMessage());
+			System.err.println("SQLState: " + e.getSQLState());
+			System.err.println("VendorError: " + e.getErrorCode());
+		}
+		
+		return false;
+	}
 }

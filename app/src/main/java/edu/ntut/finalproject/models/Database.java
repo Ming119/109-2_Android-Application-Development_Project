@@ -132,9 +132,12 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(response);
-        if (res == null) return null;
-        return res;
+        if (response != null) {
+            String res = JSON2String(response);
+            return res;
+        }
+
+        return null;
     }
 
     /**
@@ -200,9 +203,12 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(response);
-        if (res == null) return null;
-        return res;
+        if (response != null) {
+            String res = JSON2String(response);
+            return res;
+        }
+
+        return null;
     }
 
     /**
@@ -219,9 +225,12 @@ public class Database {
 
         connect(builtURI, GET);
 
-        String res = JSON2String(response);
-        if (res == null) return null;
-        return res;
+        if (response != null) {
+            String res = JSON2String(response);
+            return res;
+        }
+
+        return null;
     }
 
     /**
