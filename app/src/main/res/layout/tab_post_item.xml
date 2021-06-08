@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="Uplaod An New Item"
+        android:layout_marginTop="32dp"
+        android:text="Uplaod A New Item"
         android:textColor="@color/White"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:hint="Description"
         android:textColorHint="@color/LightGray"
         app:boxStrokeColor="@color/LightGray"
@@ -55,10 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="textMultiLine"
-            android:background="@color/JetBlack"
-            android:textColor="@color/White"/>
+            android:textColor="@color/White" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:hint="Price"
         android:textColorHint="@color/LightGray"
         app:boxStrokeColor="@color/LightGray"

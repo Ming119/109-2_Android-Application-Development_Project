@@ -4,7 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/JetBlack">
+    android:background="@color/JetBlack"
+    android:rotation="0">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="false"
+        android:rotationX="0"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_profile"
+        tools:srcCompat="@mipmap/ic_profile"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/user_name"
@@ -19,7 +37,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -58,8 +76,9 @@
                 android:id="@+id/text_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_settting"
                 android:padding="16dp"
-                android:text="Setting"
+                android:text="    Setting"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -68,8 +87,9 @@
                 android:id="@+id/text_change_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_username"
                 android:padding="16dp"
-                android:text="Change Username"
+                android:text="    Change Username"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -78,8 +98,9 @@
                 android:id="@+id/text_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_password"
                 android:padding="16dp"
-                android:text="Change Password"
+                android:text="    Change Password"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -88,8 +109,9 @@
                 android:id="@+id/text_sign_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_logout"
                 android:padding="16dp"
-                android:text="Sign out"
+                android:text="    Sign out"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -98,8 +120,9 @@
                 android:id="@+id/text_contribution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_contribution"
                 android:padding="16dp"
-                android:text="Contribution"
+                android:text="    Contribution"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -108,8 +131,9 @@
                 android:id="@+id/text_version_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_info"
                 android:padding="16dp"
-                android:text="Version info"
+                android:text="    Version info"
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold" />
