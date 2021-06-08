@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHolder> implements Filterable {
 
     private final Context context;
 
@@ -42,6 +44,36 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
     @Override
     public int getItemCount() {
         return filteredItemArray.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                ArrayList<Item> filteredItem = new ArrayList<>();
+                if (constraint == null || constraint.length() == 0)
+                    filteredItem.addAll(itemArray);
+                else {
+                    String filterPattern = constraint.toString().toLowerCase().trim();
+                    for (Item item: itemArray) {
+                        if (item.getTitle().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern))
+                            filteredItem.add(item);
+                    }
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredItem;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredItemArray.clear();
+                filteredItemArray.addAll((ArrayList<Item>) results.values);
+                notifyDataSetChanged();
+            }
+        };
     }
 
     protected class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

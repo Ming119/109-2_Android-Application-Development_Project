@@ -58,7 +58,6 @@ public class TabFragment_search extends Fragment {
         recyclerView.setAdapter(searchAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -66,24 +65,8 @@ public class TabFragment_search extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                final ArrayList<Item> filterdItemArray = filter(itemArray, newText);
-                //searchAdapter = new SearchAdapter(getActivity(), filterdItemArray);
+                searchAdapter.getFilter().filter(newText);
                 return true;
-            }
-
-            private ArrayList<Item> filter(ArrayList<Item> itemArray, String query) {
-                final String lowerCaseQuery = query.toLowerCase();
-
-                final ArrayList<Item> filterdItemArray = new ArrayList<>();
-                for (Item item : itemArray) {
-                    final String title = item.getTitle();
-                    final String desc  = item.getDescription();
-
-                    if (title.contains(lowerCaseQuery) || desc.contains(lowerCaseQuery))
-                        filterdItemArray.add(item);
-                }
-
-                return filterdItemArray;
             }
         });
 
