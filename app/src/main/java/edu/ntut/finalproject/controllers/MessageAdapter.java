@@ -1,4 +1,4 @@
-/*
+
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
@@ -14,21 +14,24 @@ import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Chat;
+import edu.ntut.finalproject.models.Message;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
     private final Context context;
 
-    private String uid;
-    private ArrayList<Chat> chatArray;
+    private String fromUID;
+    private String toUID;
+    private ArrayList<Message> messageArray;
 
-    public MessageAdapter(Context context, String uid) {
+    public MessageAdapter(Context context, String from, String to) {
         this.context = context;
-        this.uid     = uid;
+        this.fromUID = from;
+        this.toUID   = to;
 
-        Chat chat = new Chat();
+        Message message = new Message(fromUID);
         try {
-            this.chatArray = chat.getChats(uid);
+            this.messageArray = message.getChats(toUID);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,29 +39,30 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemView
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.message_tab_item, parent, false));
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MessageViewHolder(LayoutInflater.from(context).inflate(R.layout.message_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        if (chatArray == null) return;
-        holder.bindTo(chatArray.get(position));
+    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+        if (messageArray == null) return;
+        holder.bindTo(messageArray.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return chatArray.size();
+        if (messageArray == null) return 0;
+        return messageArray.size();
     }
 
-    protected class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    protected class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView message;
 
-        public ItemViewHolder(@NonNull View itemView) {
+        public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            message = itemView.findViewById(R.id.message_tab_item);
+            message = itemView.findViewById(R.id.message_b);
 
             itemView.setOnClickListener(this);
         }
@@ -68,9 +72,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemView
 
         }
 
-        public void bindTo(@NonNull Chat chat) {
-            message.setText(chat.getMessage());
+        public void bindTo(@NonNull Message mesg) {
+            message.setText(mesg.getMessage());
+
+            if (mesg.getFromUID().equals(fromUID)) {
+                // message.setGravity();
+            }
+
+            if (mesg.getToUID().equals(toUID)) {
+
+            }
         }
     }
 }
-*/

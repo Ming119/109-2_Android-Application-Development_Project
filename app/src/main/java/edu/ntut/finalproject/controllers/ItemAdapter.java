@@ -77,7 +77,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         @Override
         public void onClick(View v) {
             Item item = itemArray.get((getAdapterPosition()));
-            Intent itemDetail = new Intent(v.getContext(), ItemDetailsActivity.class);
+            Intent itemDetail = new Intent(context, ItemDetailsActivity.class);
 
             itemDetail.putExtra("TITLE", item.getTitle());
             itemDetail.putExtra("DESC", item.getDescription());

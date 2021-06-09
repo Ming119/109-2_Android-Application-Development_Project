@@ -1,5 +1,7 @@
 package edu.ntut.finalproject.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,6 +23,10 @@ public class Message {
         this.message = null;
     }
 
+    public Message(String from) {
+        this.fromUID = from;
+    }
+
     public Message(int rcid, String from, String to, String mesg) {
         this.rcid    = rcid;
         this.fromUID = from;
@@ -38,8 +44,9 @@ public class Message {
     public void setToUID(String toUID) { this.toUID = toUID; }
     public void setMessage(String message) { this.message = message; }
 
-    public ArrayList<Message> getChats(String uid) throws Exception {
-        String JSONString = db.getChats(uid);
+    public ArrayList<Message> getChats(String toUID) throws Exception {
+        Log.d(this.fromUID, toUID);
+        String JSONString = db.getChats(this.fromUID, toUID);
         if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);

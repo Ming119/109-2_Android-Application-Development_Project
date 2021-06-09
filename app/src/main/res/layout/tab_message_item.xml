@@ -10,15 +10,26 @@
         android:id="@+id/tab_message_item_UID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="text"
+        android:paddingLeft="32dp"
+        android:paddingTop="8dp"
+        android:paddingRight="32dp"
         android:textColor="@color/White"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tab_message_item_lastmesg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test"
-        android:textColor="@color/Gray" />
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/Gray"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+
 </LinearLayout>

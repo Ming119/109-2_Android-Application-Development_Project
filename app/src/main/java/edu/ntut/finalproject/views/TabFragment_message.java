@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
@@ -31,6 +32,7 @@ public class TabFragment_message extends Fragment {
 
         recyclerView = view.findViewById(R.id.tab_message_recyclerView);
         recyclerView.setAdapter(new ChatAdapter(getActivity(), uid));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
     }

@@ -35,7 +35,7 @@ public class Chat {
     public void setLastMesg(String lastMesg) { this.lastMesg = lastMesg; }
 
     public ArrayList<Chat> getChats(String uid) throws Exception {
-        String JSONString = db.getChats(uid);
+        String JSONString = db.getLastChat(uid);
         if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);

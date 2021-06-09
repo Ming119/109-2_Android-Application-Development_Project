@@ -296,14 +296,16 @@ public class Database {
 
     /**
      *
-     * @param uid String
+     * @param from  String
+     * @param to    String
      * @return JSON like String
      * @throws IOException Connection Error
      */
-    public String getChats(String uid) throws IOException {
+    public String getChats(String from, String to) throws IOException {
         String url = BASE_URL + "GetChatRecord?";
         Uri builtURI = Uri.parse(url).buildUpon()
-                .appendQueryParameter(UID, uid)
+                .appendQueryParameter(FROMUID, from)
+                .appendQueryParameter(TOUID, to)
                 .build();
 
         connect(builtURI, GET);

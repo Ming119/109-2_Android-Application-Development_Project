@@ -17,18 +17,14 @@ import android.widget.Toolbar;
 
 public class SettingActivity extends AppCompatActivity {
 
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
         ActionBar actionBar = getSupportActionBar();
-
-        // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-
     }
 
     @Override
