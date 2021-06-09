@@ -331,4 +331,19 @@ public class Database {
 
         return urlConnection.getResponseCode() == HttpsURLConnection.HTTP_OK;
     }
+
+    public String getLastChat(String uid) throws IOException {
+        String url = BASE_URL + "GetLastChat?";
+        Uri builtURI = Uri.parse(url).buildUpon()
+                .appendQueryParameter(UID, uid)
+                .build();
+
+        connect(builtURI, GET);
+
+        if (response != null) {
+            return JSON2String(response);
+        }
+
+        return null;
+    }
 }

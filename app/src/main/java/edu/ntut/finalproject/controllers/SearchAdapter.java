@@ -1,6 +1,7 @@
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
+import edu.ntut.finalproject.views.ItemDetailsActivity;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHolder> implements Filterable {
 
@@ -39,8 +41,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @NonNull
@@ -65,26 +65,27 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                ArrayList<Item> filteredItem = new ArrayList<>();
-                if (constraint == null || constraint.length() == 0)
-                    filteredItem.addAll(itemArray);
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (filterPattern.isEmpty())
+                    filteredItemArray = itemArray;
                 else {
-                    String filterPattern = constraint.toString().toLowerCase().trim();
+                    ArrayList<Item> filteredItem = new ArrayList<>();
                     for (Item item: itemArray) {
                         if (item.getTitle().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern))
                             filteredItem.add(item);
                     }
+                    filteredItemArray = filteredItem;
                 }
 
                 FilterResults results = new FilterResults();
-                results.values = filteredItem;
+                results.values = filteredItemArray;
                 return results;
+
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                filteredItemArray.clear();
-                filteredItemArray.addAll((ArrayList<Item>) results.values);
+                filteredItemArray = (ArrayList<Item>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -106,7 +107,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
 
         @Override
         public void onClick(View v) {
+            Item item = filteredItemArray.get((getAdapterPosition()));
+            Intent itemDetail = new Intent(v.getContext(), ItemDetailsActivity.class);
 
+            itemDetail.putExtra("TITLE", item.getTitle());
+            itemDetail.putExtra("DESC", item.getDescription());
+            itemDetail.putExtra("PRICE", String.valueOf(item.getPrice()));
+            itemDetail.putExtra("SELLER", item.getUid());
+
+            context.startActivity(itemDetail);
         }
 
         public void bindTo(@NonNull Item item) {

@@ -89,4 +89,16 @@
         android:text="@string/do_not_have_and_account"
         android:textColor="@color/LightGray" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="@string/alphaBetaWaring"
+        android:textColor="@color/LightGray"
+        android:textSize="10sp" />
+
 </LinearLayout>

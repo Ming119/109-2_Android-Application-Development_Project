@@ -6,19 +6,19 @@
     android:background="@color/JetBlack"
     android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/searchView"
+    <TextView
+        android:id="@+id/tab_message_item_UID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:padding="8dp"
-        android:queryHint="Search">
+        android:text="text"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    </SearchView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recyclerView"
+    <TextView
+        android:id="@+id/tab_message_item_lastmesg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:textColor="@color/Gray" />
 </LinearLayout>

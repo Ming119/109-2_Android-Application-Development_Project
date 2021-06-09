@@ -1,37 +1,52 @@
+
 package edu.ntut.finalproject.controllers;
 
-import android.view.View;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemViewHolder> {
+import java.util.ArrayList;
+
+import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.models.Chat;
+
+public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
+
+    private final Context context;
+
+    private ArrayList<Chat> messageArray;
+    private String uid;
+
+    public ChatAdapter(Context context, String uid) {
+        this.context = context;
+        this.uid = uid;
+
+        Chat chat = new Chat();
+        try {
+            this.messageArray = chat.getChats(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @NonNull
     @Override
-    public ChatAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ChatViewHolder(LayoutInflater.from(context).inflate(R.layout.tab_message_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatAdapter.ItemViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
+        if (messageArray == null) return;
+        holder.bindTo(messageArray.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
-    }
-
-    protected class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public ItemViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
+        if (messageArray == null) return 0;
+        return messageArray.size();
     }
 }

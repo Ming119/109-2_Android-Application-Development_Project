@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import edu.ntut.finalproject.views.TabFragment_mainpage;
-import edu.ntut.finalproject.views.TabFragment_notification;
+import edu.ntut.finalproject.views.TabFragment_message;
 import edu.ntut.finalproject.views.TabFragment_post_item;
 import edu.ntut.finalproject.views.TabFragment_profile_logedin;
 import edu.ntut.finalproject.views.TabFragment_profile_login;
@@ -38,7 +38,7 @@ public class TabAdapter extends FragmentStateAdapter {
 
             case 3:
                 if (uid == null) return new TabFragment_profile_login();
-                return new TabFragment_notification();
+                return new TabFragment_message();
 
             case 4:
                 if (uid == null) return new TabFragment_profile_login();

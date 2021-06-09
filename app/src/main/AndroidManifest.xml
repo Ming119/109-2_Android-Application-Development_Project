@@ -41,6 +41,10 @@
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
 
         <activity
+            android:name=".views.ItemDetailsActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
+
+        <activity
             android:name=".views.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
@@ -50,8 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
 
     </application>
 

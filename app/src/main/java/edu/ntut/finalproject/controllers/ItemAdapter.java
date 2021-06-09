@@ -1,12 +1,12 @@
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +18,9 @@ import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
+import edu.ntut.finalproject.views.ItemDetailsActivity;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     private final Context context;
 
@@ -37,17 +38,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.tab_main_item, parent, false));
+    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.tab_main_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         if (itemArray == null) return;
         holder.bindTo(itemArray.get(position));
     }
@@ -58,13 +58,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         return itemArray.size();
     }
 
-    protected class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView itemImage;
-        private TextView  itemTitle;
-        private TextView  itemInfo;
+        private final ImageView itemImage;
+        private final TextView itemTitle;
+        private final TextView  itemInfo;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemImage = itemView.findViewById(R.id.image_item);
@@ -76,7 +76,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
+            Item item = itemArray.get((getAdapterPosition()));
+            Intent itemDetail = new Intent(v.getContext(), ItemDetailsActivity.class);
 
+            itemDetail.putExtra("TITLE", item.getTitle());
+            itemDetail.putExtra("DESC", item.getDescription());
+            itemDetail.putExtra("PRICE", String.valueOf(item.getPrice()));
+            itemDetail.putExtra("SELLER", item.getUid());
+
+            context.startActivity(itemDetail);
         }
 
         public void bindTo(@NonNull Item item) {
@@ -85,5 +93,4 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemInfo.setText(item.getDescription());
         }
     }
-
 }

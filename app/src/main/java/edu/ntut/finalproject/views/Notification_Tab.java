@@ -10,20 +10,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.controllers.ChatTabAdapter;
 import edu.ntut.finalproject.models.Item;
 
 public class Notification_Tab extends Fragment {
 
     private ArrayList<Item> itemArray;
+    private RecyclerView recyclerView;
 
     public Notification_Tab() {
         //this.itemArray = itemArray;
@@ -32,10 +29,13 @@ public class Notification_Tab extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_notification, container, false);
+        View view = inflater.inflate(R.layout.tab_message, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
         String uid = sharedPreferences.getString("UID", null);
+
+        recyclerView = view.findViewById(R.id.nofication_tab_recyclerview);
+        //recyclerView.setAdapter(new MessageAdapter(getActivity(), uid));
 
         return view;
     }
