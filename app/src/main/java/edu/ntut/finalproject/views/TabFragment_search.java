@@ -33,9 +33,7 @@ public class TabFragment_search extends Fragment {
     private RecyclerView recyclerView;
     private SearchAdapter searchAdapter;
 
-    private ArrayList<Item> itemArray = new ArrayList<>();
-
-
+    @NonNull
     public static TabFragment_profile_login newInstance(int counter) {
         Bundle args = new Bundle();
         args.putInt(ARG_COUNT, counter);
@@ -54,13 +52,14 @@ public class TabFragment_search extends Fragment {
         searchView   = view.findViewById(R.id.searchView);
         recyclerView = view.findViewById(R.id.search_recyclerView);
 
-        searchAdapter = new SearchAdapter(getActivity(), itemArray);
+        searchAdapter = new SearchAdapter(getActivity());
         recyclerView.setAdapter(searchAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                searchAdapter.getFilter().filter(query);
+                return true;
             }
 
             @Override

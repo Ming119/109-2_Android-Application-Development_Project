@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
@@ -23,10 +26,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
     private ArrayList<Item> itemArray;
     private ArrayList<Item> filteredItemArray;
 
-    public SearchAdapter(Context context, ArrayList<Item> itemArray) {
+    public SearchAdapter(Context context) {
         this.context = context;
-        this.itemArray = itemArray;
-        this.filteredItemArray = itemArray;
+
+        Item item = new Item();
+
+        try {
+            this.itemArray = item.getItems();
+            this.filteredItemArray = itemArray;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @NonNull
