@@ -73,17 +73,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_setting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_settting"
-                android:padding="16dp"
-                android:text="    Setting"
-                android:textColor="@color/White"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/text_change_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

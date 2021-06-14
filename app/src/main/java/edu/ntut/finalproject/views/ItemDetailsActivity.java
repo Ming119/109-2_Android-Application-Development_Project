@@ -1,5 +1,6 @@
 package edu.ntut.finalproject.views;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.ntut.finalproject.R;
 
 public class ItemDetailsActivity extends AppCompatActivity {
+
+    private int id;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("edu.ntut.finalproject.loginStatus", MODE_PRIVATE);
 
+        id = getIntent().getIntExtra("ID", 0);
+
         ImageView image    = findViewById(R.id.Item_image);
         TextView  title    = findViewById(R.id.Item_title);
         TextView  desc     = findViewById(R.id.Item_desc);
@@ -35,20 +41,23 @@ public class ItemDetailsActivity extends AppCompatActivity {
         image.setImageResource(R.drawable.was);
         title.setText(getIntent().getStringExtra("TITLE"));
         desc.setText(getIntent().getStringExtra("DESC"));
-        price.setText(getIntent().getStringExtra("PRICE"));
+        price.setText("$ " + getIntent().getStringExtra("PRICE"));
 
         if (getIntent().getStringExtra("SELLER").equals(sharedPreferences.getString("UID", null))) {
             contact.setText("Edit Item");
         }
 
-        contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (contact.getText().equals("Edit Item")) {
+        contact.setOnClickListener(v -> {
+            if (contact.getText().equals("Edit Item")) {
+                Intent editItemActivity = new Intent(this, EditItemActivity.class);
+                editItemActivity.putExtra("ID", id);
+                startActivity(editItemActivity);
 
-                } else {
+            } else if (sharedPreferences.getString("UID", null) == null) {
+                //Intent intent = new Intent(this, .class);
+                //startActivity(intent);
+            } else {
 
-                }
             }
         });
 

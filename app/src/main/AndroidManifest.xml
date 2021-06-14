@@ -14,10 +14,6 @@
         android:theme="@style/Theme.FinalProject">
 
         <activity
-            android:name=".views.SettingActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"/>
-
-        <activity
             android:name=".views.ChangeUsernameActivity"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"/>
 
@@ -48,6 +44,9 @@
             android:name=".views.MessageActivity"
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
 
+        <activity
+            android:name=".views.EditItemActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
         <activity
             android:name=".views.MainActivity"
             android:label="@string/app_name"

@@ -40,14 +40,6 @@ public class TabFragment_profile_logedin extends Fragment {
         user_name.setText(sharedPreferences.getString("USERNAME", ""));
         user_id.setText(sharedPreferences.getString("UID", ""));
 
-
-        TextView setting = view.findViewById(R.id.text_setting);
-        setting.setOnClickListener(v -> {
-            Intent setting_intent = new Intent(getActivity(), SettingActivity.class);
-            startActivity(setting_intent);
-
-        });
-
         TextView change_username = view.findViewById(R.id.text_change_username);
         change_username.setOnClickListener(view12 -> {
             Intent change_username_intent = new Intent(getActivity(), ChangeUsernameActivity.class);

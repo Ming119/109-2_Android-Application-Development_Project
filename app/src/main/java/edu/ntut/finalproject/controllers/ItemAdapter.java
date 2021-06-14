@@ -79,6 +79,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             Item item = itemArray.get((getAdapterPosition()));
             Intent itemDetail = new Intent(context, ItemDetailsActivity.class);
 
+            itemDetail.putExtra("ID", item.getID());
             itemDetail.putExtra("TITLE", item.getTitle());
             itemDetail.putExtra("DESC", item.getDescription());
             itemDetail.putExtra("PRICE", String.valueOf(item.getPrice()));
