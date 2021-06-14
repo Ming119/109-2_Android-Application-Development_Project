@@ -45,7 +45,6 @@ public class Message {
     public void setMessage(String message) { this.message = message; }
 
     public ArrayList<Message> getChats(String toUID) throws Exception {
-        Log.d(this.fromUID, toUID);
         String JSONString = db.getChats(this.fromUID, toUID);
         if (JSONString == null) return null;
 
@@ -58,7 +57,7 @@ public class Message {
         for (int i = 0; i < chatArray.length(); i++) {
             JSONObject chat = chatArray.getJSONObject(i);
 
-            int     cid  = Integer.parseInt(chat.getString("rcid"));
+            int     cid  = Integer.parseInt(chat.getString("crid"));
             String  fuid = chat.getString("fromUID");
             String  tuid = chat.getString("toUID");
             String  cmsg = chat.getString("message");

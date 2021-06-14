@@ -1,7 +1,8 @@
-
 package edu.ntut.finalproject.controllers;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.models.Chat;
 import edu.ntut.finalproject.models.Message;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
@@ -73,14 +73,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         }
 
         public void bindTo(@NonNull Message mesg) {
+            Log.d("message", mesg.getMessage());
+
             message.setText(mesg.getMessage());
 
             if (mesg.getFromUID().equals(fromUID)) {
-                // message.setGravity();
+                message.setGravity(Gravity.RIGHT);
             }
 
-            if (mesg.getToUID().equals(toUID)) {
-
+            if (mesg.getFromUID().equals(toUID)) {
+                message.setGravity(Gravity.LEFT);
             }
         }
     }
