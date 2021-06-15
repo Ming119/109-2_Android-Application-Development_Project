@@ -89,7 +89,7 @@ public class Item {
      * @param id int
      * @return An Item
      * @throws IOException Connection Error
-     * @throws JSONException Connection Error
+     * @throws JSONException Ref to Database JSON2String method
      */
     public Item getItem(int id) throws IOException, JSONException {
         String JSONString = db.getItem(id);

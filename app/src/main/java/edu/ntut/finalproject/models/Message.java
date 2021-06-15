@@ -1,7 +1,5 @@
 package edu.ntut.finalproject.models;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,7 +22,10 @@ public class Message {
     }
 
     public Message(String from) {
+        this.rcid    = 0;
         this.fromUID = from;
+        this.toUID   = null;
+        this.message = null;
     }
 
     public Message(int rcid, String from, String to, String mesg) {
@@ -44,6 +45,12 @@ public class Message {
     public void setToUID(String toUID) { this.toUID = toUID; }
     public void setMessage(String message) { this.message = message; }
 
+    /**
+     * Get all chats from the database
+     * @param toUID String
+     * @return  String like JSON array
+     * @throws Exception Connection Error
+     */
     public ArrayList<Message> getChats(String toUID) throws Exception {
         String JSONString = db.getChats(this.fromUID, toUID);
         if (JSONString == null) return null;
@@ -68,10 +75,24 @@ public class Message {
         return chats;
     }
 
+    /**
+     * Add a new message to the database
+     * @param from  String
+     * @param to    String
+     * @param mesg  String
+     * @return  true if success, false if failed.
+     * @throws IOException Connection Error
+     */
     public boolean newMessage(String from, String to, String mesg) throws IOException {
         return db.createChat(from, to, mesg);
     }
 
+    /**
+     * Delete a message from the database by rcid
+     * @param rcid  int
+     * @return  true if success, false if failed.
+     * @throws IOException Connection Error
+     */
     public boolean deleteMessage(int rcid) throws IOException {
         return db.deleteChat(rcid);
     }

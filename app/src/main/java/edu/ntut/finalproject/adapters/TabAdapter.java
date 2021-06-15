@@ -1,16 +1,16 @@
-package edu.ntut.finalproject.controllers;
+package edu.ntut.finalproject.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import edu.ntut.finalproject.views.TabFragment_mainpage;
-import edu.ntut.finalproject.views.TabFragment_message;
-import edu.ntut.finalproject.views.TabFragment_post_item;
-import edu.ntut.finalproject.views.TabFragment_profile_logedin;
-import edu.ntut.finalproject.views.TabFragment_profile_login;
-import edu.ntut.finalproject.views.TabFragment_search;
+import edu.ntut.finalproject.fragments.TabFragment_mainpage;
+import edu.ntut.finalproject.fragments.TabFragment_message;
+import edu.ntut.finalproject.fragments.TabFragment_post_item;
+import edu.ntut.finalproject.fragments.TabFragment_profile_logedin;
+import edu.ntut.finalproject.fragments.TabFragment_profile_login;
+import edu.ntut.finalproject.fragments.TabFragment_search;
 
 public class TabAdapter extends FragmentStateAdapter {
 

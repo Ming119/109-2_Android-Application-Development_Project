@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.util;
 
 public class ContributionActivity extends AppCompatActivity {
 
@@ -30,32 +31,31 @@ public class ContributionActivity extends AppCompatActivity {
 
         projectLink = findViewById(R.id.text_link);
         projectLink.setOnClickListener(v -> {
-            Uri webpage = Uri.parse("https://github.com/Ming119/109-2_Android-Application-Development_Project");
+            Uri webpage = Uri.parse(util.githubURL);
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
         });
 
         contributor1Link = findViewById(R.id.contributor1);
         contributor1Link.setOnClickListener(v -> {
-            Uri webpage = Uri.parse("https://github.com/FuChiKei");
+            Uri webpage = Uri.parse(util.githubFCK);
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
         });
 
         contributor2Link = findViewById(R.id.contributor2);
         contributor2Link.setOnClickListener(v -> {
-            Uri webpage = Uri.parse("https://github.com/Ming119");
+            Uri webpage = Uri.parse(util.githubLHM);
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
         });
 
         contributor3Link = findViewById(R.id.contributor3);
         contributor3Link.setOnClickListener(v -> {
-            Uri webpage = Uri.parse("https://github.com/HuangShengYao108590061");
+            Uri webpage = Uri.parse(util.githubSVH);
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
         });
-
     }
 
     @Override
@@ -64,6 +64,7 @@ public class ContributionActivity extends AppCompatActivity {
             this.finish();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.controllers.ItemAdapter;
+import edu.ntut.finalproject.adapters.ItemAdapter;
 
 public class TabFragment_mainpage extends Fragment {
 

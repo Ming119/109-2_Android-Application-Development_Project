@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.User;
+import edu.ntut.finalproject.util;
 
 public class ChangeUsernameActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class ChangeUsernameActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences("edu.ntut.finalproject.loginStatus", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(util.sharePrefName, MODE_PRIVATE);
 
         newUsername = findViewById(R.id.change_username_newusername);
         password    = findViewById(R.id.change_username_password);
@@ -45,39 +46,39 @@ public class ChangeUsernameActivity extends AppCompatActivity {
             String pw      = password.getText().toString();
             String cpw     = confirmPW.getText().toString();
 
-            if (newName.equals("")) {
-                Toast.makeText(ChangeUsernameActivity.this, "Username cannot be empty", Toast.LENGTH_LONG).show();
+            if (newName.isEmpty()) {
+                Toast.makeText(ChangeUsernameActivity.this, R.string.nullUsername, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if (pw.equals("")) {
-                Toast.makeText(ChangeUsernameActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+            if (pw.isEmpty()) {
+                Toast.makeText(ChangeUsernameActivity.this, R.string.nullPW, Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (!pw.equals(cpw)) {
-                Toast.makeText(ChangeUsernameActivity.this, "Passwords did not match", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChangeUsernameActivity.this, R.string.pwNotMatch, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            User user = new User(sharedPreferences.getString("UID", null));
+            User user = new User(sharedPreferences.getString(util.UID, null));
             try {
                 if(user.EditProfile(newName, pw)) {
-                    Toast.makeText(ChangeUsernameActivity.this, "Username Changed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangeUsernameActivity.this, R.string.usernameChange, Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                    preferencesEditor.putString("UID", user.getUid());
-                    preferencesEditor.putString("USERNAME", user.getName());
+                    preferencesEditor.putString(util.UID, user.getUid());
+                    preferencesEditor.putString(util.USERNAME, user.getName());
                     preferencesEditor.apply();
 
                     finish();
                 } else {
-                    Toast.makeText(ChangeUsernameActivity.this, "Change failed!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChangeUsernameActivity.this, R.string.changeFail, Toast.LENGTH_LONG).show();
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
     }
 
@@ -87,6 +88,7 @@ public class ChangeUsernameActivity extends AppCompatActivity {
             this.finish();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,10 +1,9 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.util;
 
 public class ItemDetailsActivity extends AppCompatActivity {
 
@@ -28,9 +28,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("edu.ntut.finalproject.loginStatus", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(util.sharePrefName, MODE_PRIVATE);
 
-        id = getIntent().getIntExtra("ID", 0);
+        id = getIntent().getIntExtra(util.ID, 0);
 
         ImageView image    = findViewById(R.id.Item_image);
         TextView  title    = findViewById(R.id.Item_title);
@@ -43,25 +43,23 @@ public class ItemDetailsActivity extends AppCompatActivity {
         desc.setText(getIntent().getStringExtra("DESC"));
         price.setText("$ " + getIntent().getStringExtra("PRICE"));
 
-        if (getIntent().getStringExtra("SELLER").equals(sharedPreferences.getString("UID", null))) {
+        if (getIntent().getStringExtra("SELLER").equals(sharedPreferences.getString(util.UID, null))) {
             contact.setText("Edit Item");
         }
 
         contact.setOnClickListener(v -> {
             if (contact.getText().equals("Edit Item")) {
                 Intent editItemActivity = new Intent(this, EditItemActivity.class);
-                editItemActivity.putExtra("ID", id);
+                editItemActivity.putExtra(util.ID, id);
                 startActivity(editItemActivity);
 
-            } else if (sharedPreferences.getString("UID", null) == null) {
+            } else if (sharedPreferences.getString(util.UID, null) == null) {
                 //Intent intent = new Intent(this, .class);
                 //startActivity(intent);
             } else {
 
             }
         });
-
-
     }
 
     @Override

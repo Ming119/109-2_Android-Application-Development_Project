@@ -1,7 +1,6 @@
-package edu.ntut.finalproject.controllers;
+package edu.ntut.finalproject.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +19,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     private final Context context;
 
-    private String fromUID;
-    private String toUID;
+    private final String fromUID;
+    private final String toUID;
     private ArrayList<Message> messageArray;
 
     public MessageAdapter(Context context, String from, String to) {
@@ -57,33 +56,28 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     protected class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView message;
+        private final TextView message;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
             message = itemView.findViewById(R.id.message_b);
-
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            // TODO: on message click
         }
 
         public void bindTo(@NonNull Message mesg) {
-            Log.d("message", mesg.getMessage());
-
             message.setText(mesg.getMessage());
 
-            if (mesg.getFromUID().equals(fromUID)) {
-                message.setGravity(Gravity.RIGHT);
-            }
+            if (mesg.getFromUID().equals(fromUID))
+                message.setGravity(Gravity.END);
 
-            if (mesg.getFromUID().equals(toUID)) {
-                message.setGravity(Gravity.LEFT);
-            }
+            if (mesg.getFromUID().equals(toUID))
+                message.setGravity(Gravity.START);
         }
     }
 }

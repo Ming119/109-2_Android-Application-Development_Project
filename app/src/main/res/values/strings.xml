@@ -15,7 +15,24 @@
     <string name="change_password">Change Password</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
-    <string name="version">Beta 210614</string>
-    <string name="alphaBetaWaring">Please be reminded that the app is still on developing.\nYour data may not be encrypted during the connection.\nYour data may be unencrypted and stored in the database.\nDO NOT enter ant real data of yours.
-    </string>
+    <string name="version">Beta 210615</string>
+    <string name="alphaBetaWaring">Please be reminded that the app is still on developing.\nYour data may not be encrypted during the connection.\nYour data may be unencrypted and stored in the database.\nDO NOT enter ant real data of yours.</string>
+    <string name="nullUID">Student ID cannot be empty</string>
+    <string name="UIDformat">Student ID format error</string>
+    <string name="nullUsername">Username cannot be empty</string>
+    <string name="nullPW">Password cannot be empty</string>
+    <string name="nullTitle">Title cannot be empty</string>
+    <string name="nullPrice">Price cannot be empty</string>
+    <string name="pwNotMatch">Passwords did not match</string>
+    <string name="registerSuccess">Register Success!</string>
+    <string name="registerFail">Register Failed!</string>
+    <string name="uploadSuccess">Upload Success!</string>
+    <string name="uploadFail">Upload Failed!</string>
+    <string name="usernameChange">Username Changed!</string>
+    <string name="pwChange">Password Changed!</string>
+    <string name="changeFail">Change Failed!</string>
+    <string name="itemEdit">Item Edit Success!</string>
+    <string name="editFail">Edit Failed!</string>
+    <string name="error">Error</string>
+
 </resources>

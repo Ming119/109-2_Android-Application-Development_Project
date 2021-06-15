@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.activities.RegisterActivity;
 import edu.ntut.finalproject.models.User;
+import edu.ntut.finalproject.util;
 
 public class TabFragment_profile_login extends Fragment {
 
@@ -34,53 +37,55 @@ public class TabFragment_profile_login extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_profile_login,container,false);
 
-        sharedPreferences = context.getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(util.sharePrefName, Context.MODE_PRIVATE);
         studentID = view.findViewById(R.id.login_studentID);
         password  = view.findViewById(R.id.login_passowrd);
+
         Button login = view.findViewById(R.id.btn_login);
-
         login.setOnClickListener((View v) -> {
-
             String lid = studentID.getText().toString();
             String lpw = password.getText().toString();
 
-            if (lid.equals("")) {
-                Toast.makeText(getActivity(), "Student ID cannot be empty", Toast.LENGTH_LONG).show();
+            if (lid.isEmpty()) {
+                Toast.makeText(getActivity(), R.string.nullUID, Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (lid.length() != 9) {
-                Toast.makeText(getActivity(), "Student ID format error", Toast.LENGTH_LONG).show();
-                return;
-            }
-            if (lpw.equals("")) {
-                Toast.makeText(getActivity(), "Password cannot be empty", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.UIDformat, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            boolean isloged = false;
+            if (lpw.isEmpty()) {
+                Toast.makeText(getActivity(), R.string.nullPW, Toast.LENGTH_LONG).show();
+                return;
+            }
+
             User user = new User();
-
             try {
-                isloged = user.Login(lid, lpw);
+                if (user.Login(lid, lpw)) {
+                    Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+                    preferencesEditor.putString("UID", user.getUid());
+                    preferencesEditor.putString("USERNAME", user.getName());
+                    preferencesEditor.apply();
+
+                    Intent main =  getActivity().getIntent();
+                    getActivity().finish();
+                    startActivity(main);
+                } else
+                    Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_LONG).show();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
 
-            if (isloged) {
-                Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
-
-                SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                preferencesEditor.putString("UID", user.getUid());
-                preferencesEditor.putString("USERNAME", user.getName());
-                preferencesEditor.apply();
-
-                Intent main =  getActivity().getIntent();
-                getActivity().finish();
-                startActivity(main);
-
-            } else
-                Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_LONG).show();
+        TextView gotoRegister = view.findViewById(R.id.text_gotoRegister);
+        gotoRegister.setOnClickListener(v -> {
+            Intent register = new Intent(context, RegisterActivity.class);
+            startActivity(register);
         });
 
         return view;

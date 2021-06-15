@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
+import edu.ntut.finalproject.util;
 
 public class TabFragment_post_item extends Fragment {
 
@@ -35,7 +36,7 @@ public class TabFragment_post_item extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_post_item, container, false);
 
-        sharedPreferences = getContext().getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences(util.sharePrefName, Context.MODE_PRIVATE);
         et_title = view.findViewById(R.id.upload_title);
         et_desc  = view.findViewById(R.id.upload_desc);
         et_price = view.findViewById(R.id.upload_price);
@@ -46,27 +47,28 @@ public class TabFragment_post_item extends Fragment {
             String desc  = et_desc.getText().toString();
             String price = et_price.getText().toString();
 
-            if (title.equals("")) {
-                Toast.makeText(getActivity(), "Title cannot be empty", Toast.LENGTH_LONG).show();
+            if (title.isEmpty()) {
+                Toast.makeText(getActivity(), R.string.nullTitle, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if (price.equals("")) {
-                Toast.makeText(getActivity(), "Price cannot be empty", Toast.LENGTH_LONG).show();
+            if (price.isEmpty()) {
+                Toast.makeText(getActivity(), R.string.nullPrice, Toast.LENGTH_LONG).show();
                 return;
             }
 
             Item item = new Item();
             try {
-                if (item.newItem(title, desc, Integer.parseInt(price), sharedPreferences.getString("UID", ""))) {
-                    Toast.makeText(getActivity(), "Upload Success!", Toast.LENGTH_SHORT).show();
+                if (item.newItem(title, desc, Integer.parseInt(price), sharedPreferences.getString(util.UID, null))) {
+                    Toast.makeText(getActivity(), R.string.uploadSuccess, Toast.LENGTH_SHORT).show();
 
                     Intent intent = getActivity().getIntent();
                     getActivity().finish();
                     startActivity(intent);
                 }
+
             } catch (IOException e) {
-                Toast.makeText(getActivity(), "Upload Failed!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.uploadFail, Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         });

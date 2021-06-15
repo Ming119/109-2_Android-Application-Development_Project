@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,11 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.controllers.ChatAdapter;
+import edu.ntut.finalproject.adapters.ChatAdapter;
+import edu.ntut.finalproject.util;
 
 public class TabFragment_message extends Fragment {
-
-    private RecyclerView recyclerView;
 
     public TabFragment_message() { }
 
@@ -27,10 +26,10 @@ public class TabFragment_message extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_message, container, false);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
-        String uid = sharedPreferences.getString("UID", null);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(util.sharePrefName, Context.MODE_PRIVATE);
+        String uid = sharedPreferences.getString(util.UID, null);
 
-        recyclerView = view.findViewById(R.id.tab_message_recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.tab_message_recyclerView);
         recyclerView.setAdapter(new ChatAdapter(getActivity(), uid));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

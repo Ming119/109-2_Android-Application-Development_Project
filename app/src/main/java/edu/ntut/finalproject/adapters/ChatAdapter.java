@@ -1,8 +1,7 @@
-package edu.ntut.finalproject.controllers;
+package edu.ntut.finalproject.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,17 @@ import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Chat;
-import edu.ntut.finalproject.views.MessageActivity;
+import edu.ntut.finalproject.activities.MessageActivity;
+import edu.ntut.finalproject.util;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
     private final Context context;
 
     private ArrayList<Chat> messageArray;
-    private String uid;
 
     public ChatAdapter(Context context, String uid) {
         this.context = context;
-        this.uid = uid;
 
         Chat chat = new Chat();
         try {
@@ -73,8 +71,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             Chat chat = messageArray.get(getAdapterPosition());
 
             Intent message = new Intent(context, MessageActivity.class);
-            message.putExtra("FROM", chat.getFromUID());
-            message.putExtra("TO", chat.getToUID());
+            message.putExtra(util.FROM, chat.getFromUID());
+            message.putExtra(util.TO, chat.getToUID());
 
             context.startActivity(message);
         }
@@ -84,5 +82,4 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             lastMesg.setText(chat.getLastMesg());
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.User;
+import edu.ntut.finalproject.util;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences("edu.ntut.finalproject.loginStatus", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(util.sharePrefName, MODE_PRIVATE);
 
         newPassword  = findViewById(R.id.change_password_newpassword);
         confirmNewPW = findViewById(R.id.change_password_confirm_newpassword);
@@ -48,38 +49,38 @@ public class ChangePasswordActivity extends AppCompatActivity {
             String opw  = oldPassword.getText().toString();
             String copw = confirmOldPW.getText().toString();
 
-            if (npw.equals("")) {
-                Toast.makeText(ChangePasswordActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+            if (npw.isEmpty()) {
+                Toast.makeText(ChangePasswordActivity.this, R.string.nullPW, Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (!npw.equals(cnpw)) {
-                Toast.makeText(ChangePasswordActivity.this, "Passwords did not match", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChangePasswordActivity.this, R.string.pwNotMatch, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if (opw.equals("")) {
-                Toast.makeText(ChangePasswordActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+            if (opw.isEmpty()) {
+                Toast.makeText(ChangePasswordActivity.this, R.string.nullPW, Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (!opw.equals(copw)) {
-                Toast.makeText(ChangePasswordActivity.this, "Passwords did not match", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChangePasswordActivity.this, R.string.pwNotMatch, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            User user = new User(sharedPreferences.getString("UID", null));
+            User user = new User(sharedPreferences.getString(util.UID, null));
             try {
-                if(user.EditProfile(sharedPreferences.getString("USERNAME", null), npw)) {
-                    Toast.makeText(ChangePasswordActivity.this, "Password Changed!", Toast.LENGTH_SHORT).show();
+                if(user.EditProfile(sharedPreferences.getString(util.USERNAME, null), npw)) {
+                    Toast.makeText(ChangePasswordActivity.this, R.string.pwChange, Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(ChangePasswordActivity.this, "Change failed!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChangePasswordActivity.this, R.string.changeFail, Toast.LENGTH_LONG).show();
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
     }
 
@@ -89,6 +90,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             this.finish();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

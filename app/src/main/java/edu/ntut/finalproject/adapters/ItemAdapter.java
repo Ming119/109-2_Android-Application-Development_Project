@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.controllers;
+package edu.ntut.finalproject.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,8 @@ import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
-import edu.ntut.finalproject.views.ItemDetailsActivity;
+import edu.ntut.finalproject.activities.ItemDetailsActivity;
+import edu.ntut.finalproject.util;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
@@ -79,11 +80,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             Item item = itemArray.get((getAdapterPosition()));
             Intent itemDetail = new Intent(context, ItemDetailsActivity.class);
 
-            itemDetail.putExtra("ID", item.getID());
-            itemDetail.putExtra("TITLE", item.getTitle());
-            itemDetail.putExtra("DESC", item.getDescription());
-            itemDetail.putExtra("PRICE", String.valueOf(item.getPrice()));
-            itemDetail.putExtra("SELLER", item.getUid());
+            itemDetail.putExtra(util.ID, item.getID());
+            itemDetail.putExtra(util.TITLE, item.getTitle());
+            itemDetail.putExtra(util.DESC, item.getDescription());
+            itemDetail.putExtra(util.PRICE, String.valueOf(item.getPrice()));
+            itemDetail.putExtra(util.SELLER, item.getUid());
 
             context.startActivity(itemDetail);
         }

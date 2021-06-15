@@ -1,9 +1,7 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,13 +15,13 @@ import java.io.IOException;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.models.Item;
+import edu.ntut.finalproject.util;
 
 public class EditItemActivity extends AppCompatActivity {
 
     private EditText title;
     private EditText desc;
     private EditText price;
-    private Button   editbtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +34,37 @@ public class EditItemActivity extends AppCompatActivity {
         title = findViewById(R.id.edit_item_new_title);
         desc  = findViewById(R.id.edit_item_new_desc);
         price = findViewById(R.id.edit_item_new_price);
-        editbtn = findViewById(R.id.edit_item_edit);
+
+        Button editbtn = findViewById(R.id.edit_item_edit);
+        editbtn.setOnClickListener(v -> {
+            Item item = new Item();
+
+            try {
+                String t = title.getText().toString();
+                String d = desc.getText().toString();
+                String p = price.getText().toString();
+
+                if (t.isEmpty()) {
+                    Toast.makeText(EditItemActivity.this, R.string.nullTitle, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (p.isEmpty()) {
+                    Toast.makeText(EditItemActivity.this, R.string.nullPrice, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (item.updateItem(getIntent().getIntExtra(util.ID, 0), t, d, Integer.parseInt(p))) {
+                    Toast.makeText(EditItemActivity.this, R.string.itemEdit, Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(EditItemActivity.this, R.string.editFail, Toast.LENGTH_LONG).show();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
@@ -47,33 +75,5 @@ public class EditItemActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void EditItem(View view) {
-        Item item = new Item();
-        try {
-            String t = title.getText().toString();
-            String d = desc.getText().toString();
-            String p = price.getText().toString();
-
-            if (t.equals("")) {
-                Toast.makeText(this, "Title cannot be empty.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (p.equals("")) {
-                Toast.makeText(this, "Price cannot be empty.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (item.updateItem(getIntent().getIntExtra("ID", 0), t, d, Integer.parseInt(p))) {
-                Toast.makeText(EditItemActivity.this, "Edit success!", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(EditItemActivity.this, "Edit failed!", Toast.LENGTH_LONG).show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

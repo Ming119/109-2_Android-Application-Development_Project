@@ -1,4 +1,4 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.controllers.SearchAdapter;
+import edu.ntut.finalproject.adapters.SearchAdapter;
 
 public class TabFragment_search extends Fragment {
 

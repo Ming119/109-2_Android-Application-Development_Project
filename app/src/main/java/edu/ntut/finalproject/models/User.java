@@ -25,7 +25,7 @@ public class User {
     public User(String uid) {
         this.uid = uid;
 
-        String JSONString = null;
+        String JSONString;
         try {
             JSONString = db.getUser(uid);
 
@@ -39,11 +39,6 @@ public class User {
         }
     }
 
-    public User(String uid, String name) {
-        this.uid  = uid;
-        this.name = name;
-    }
-
     public String getUid() { return uid; }
     public String getName() { return name; }
 
@@ -52,12 +47,11 @@ public class User {
 
     /**
      * User Login
-     * @param uid
-     * @param pw
-     * @return true if login success
-     * @return false if login failed
-     * @throws IOException
-     * @throws JSONException
+     * @param uid   String
+     * @param pw    String
+     * @return true if login success, false if login failed
+     * @throws IOException      Connection Error
+     * @throws JSONException    Ref to DataBase JSON2String method
      */
     public boolean Login(String uid, String pw) throws IOException, JSONException {
         String JSONString = db.getUser(uid);
@@ -83,12 +77,11 @@ public class User {
 
     /**
      * User Registration
-     * @param uid
-     * @param name
-     * @param pw
-     * @return true if registration success
-     * @return false if registration failed
-     * @throws IOException
+     * @param uid   String
+     * @param name  String
+     * @param pw    String
+     * @return true if registration success, false if registration failed
+     * @throws IOException  Connection Error
      */
     public boolean Register(String uid, String name, String pw) throws IOException {
         if (db.createUser(uid, name, pw)) {
@@ -102,17 +95,11 @@ public class User {
 
     /**
      * Edit User Profile
-     * @param uid
-     * @param name
-     * @param pw
-     * @return true if edit success
-     * @return false if edit failed
-     * @throws IOException
+     * @param name  String
+     * @param pw    String
+     * @return true if edit success, false if edit failed
+     * @throws IOException  Connection Error
      */
-    public boolean EditProfile(String uid, String name, String pw) throws IOException {
-        return db.updateUser(uid, name, pw);
-    }
-
     public boolean EditProfile(String name, String pw) throws IOException {
         if (db.updateUser(uid, name, pw)) {
             this.name = name;

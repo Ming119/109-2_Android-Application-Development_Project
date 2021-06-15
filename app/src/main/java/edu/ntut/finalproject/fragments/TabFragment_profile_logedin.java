@@ -1,9 +1,8 @@
-package edu.ntut.finalproject.views;
+package edu.ntut.finalproject.fragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.activities.ChangePasswordActivity;
+import edu.ntut.finalproject.activities.ChangeUsernameActivity;
+import edu.ntut.finalproject.activities.ContributionActivity;
+import edu.ntut.finalproject.util;
 
 public class TabFragment_profile_logedin extends Fragment {
 
@@ -25,20 +27,19 @@ public class TabFragment_profile_logedin extends Fragment {
 
     public TabFragment_profile_logedin() { }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tab_profile_logedin,container,false);
 
-        sharedPreferences = context.getSharedPreferences("edu.ntut.finalproject.loginStatus", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(util.sharePrefName, Context.MODE_PRIVATE);
 
         TextView user_name = view.findViewById(R.id.user_name);
         TextView user_id = view.findViewById(R.id.user_id);
 
-        user_name.setText(sharedPreferences.getString("USERNAME", ""));
-        user_id.setText(sharedPreferences.getString("UID", ""));
+        user_name.setText(sharedPreferences.getString(util.USERNAME, null));
+        user_id.setText(sharedPreferences.getString(util.UID, null));
 
         TextView change_username = view.findViewById(R.id.text_change_username);
         change_username.setOnClickListener(view12 -> {

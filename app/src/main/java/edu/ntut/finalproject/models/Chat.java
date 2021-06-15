@@ -7,7 +7,6 @@ package edu.ntut.finalproject.models;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Chat {
@@ -18,7 +17,11 @@ public class Chat {
     private String toUID;
     private String lastMesg;
 
-    public Chat() { }
+    public Chat() {
+        this.fromUID  = "";
+        this.toUID    = "";
+        this.lastMesg = "";
+    }
 
     public Chat(String from, String to, String mesg) {
         this.fromUID  = from;
@@ -34,6 +37,12 @@ public class Chat {
     public void setToUID(String toUID) { this.toUID = toUID; }
     public void setLastMesg(String lastMesg) { this.lastMesg = lastMesg; }
 
+    /**
+     * Get all chats from the database
+     * @param uid String
+     * @return  String like JSON array
+     * @throws Exception Connection Error
+     */
     public ArrayList<Chat> getChats(String uid) throws Exception {
         String JSONString = db.getLastChat(uid);
         if (JSONString == null) return null;
