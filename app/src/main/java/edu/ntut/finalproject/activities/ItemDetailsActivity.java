@@ -14,12 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.models.Message;
 import edu.ntut.finalproject.util;
 
 public class ItemDetailsActivity extends AppCompatActivity {
 
     private int id;
+    private String from;
+    private String to;
+
+    private String sTitle;
+    private String sDesc;
+    private String sPrice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,8 +39,13 @@ public class ItemDetailsActivity extends AppCompatActivity {
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences sharedPreferences = getSharedPreferences(util.sharePrefName, MODE_PRIVATE);
+        from = sharedPreferences.getString(util.UID, null);
+        to   = getIntent().getStringExtra(util.SELLER);
+        id   = getIntent().getIntExtra(util.ID, 0);
+        sTitle = getIntent().getStringExtra(util.TITLE);
+        sDesc  = getIntent().getStringExtra(util.DESC);
+        sPrice = "$ " + getIntent().getStringExtra(util.PRICE);
 
-        id = getIntent().getIntExtra(util.ID, 0);
 
         ImageView image    = findViewById(R.id.Item_image);
         TextView  title    = findViewById(R.id.Item_title);
@@ -40,11 +54,11 @@ public class ItemDetailsActivity extends AppCompatActivity {
         Button    contact  = findViewById(R.id.Item_contact);
 
         image.setImageResource(R.drawable.ntut);
-        title.setText(getIntent().getStringExtra(util.TITLE));
-        desc.setText(getIntent().getStringExtra(util.DESC));
-        price.setText("$ " + getIntent().getStringExtra(util.PRICE));
+        title.setText(sTitle);
+        desc.setText(sDesc);
+        price.setText(sPrice);
 
-        if (getIntent().getStringExtra(util.SELLER).equals(sharedPreferences.getString(util.UID, null))) {
+        if (to.equals(from)) {
             contact.setText(R.string.edit_item);
         }
 
@@ -54,14 +68,28 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 editItemActivity.putExtra(util.ID, id);
                 startActivity(editItemActivity);
 
-            } else if (sharedPreferences.getString(util.UID, null) == null) {
+            } else if (from == null) {
+                 // temporarily implemented with Toast
                 Toast.makeText(this, R.string.loginFirst, Toast.LENGTH_LONG).show();
 
-                // TODO: goto LOGIN page if possible
+                // TODO: goto LOGIN tab if possible
 
             } else {
-                // TODO:
+                // temporarily implemented with sending item info automatically
+                String mesg = sTitle + "    " + sDesc + "    " + sPrice;
+                Message message = new Message();
+                try {
+                    if (message.newMessage(from, to, mesg)) {
+                        Toast.makeText(this, R.string.contectSellerSuccess, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, R.string.error, Toast.LENGTH_LONG).show();
+                    }
 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // TODO: goto MESSAGE tab if possible
             }
         });
     }

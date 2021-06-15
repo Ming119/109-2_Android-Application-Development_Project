@@ -2,8 +2,11 @@ package edu.ntut.finalproject.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +26,7 @@ public class MessageActivity extends AppCompatActivity {
 
     private String from;
     private String to;
-
+    private ScrollView scrollView;
     private EditText editText;
 
     @Override
@@ -37,13 +40,16 @@ public class MessageActivity extends AppCompatActivity {
         from = getIntent().getStringExtra(util.FROM);
         to   = getIntent().getStringExtra(util.TO);
 
-        Button send = findViewById(R.id.send_message);
         editText = findViewById(R.id.editText_message);
+
+        scrollView = findViewById(R.id.message_scrollView);
+        scrollView.post(() -> scrollView.fullScroll(ScrollView.FOCUS_DOWN));
 
         RecyclerView recyclerView = findViewById(R.id.message_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MessageAdapter(this, from, to));
 
+        Button send = findViewById(R.id.send_message);
         send.setOnClickListener(v -> {
             String s = editText.getText().toString();
 

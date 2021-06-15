@@ -8,6 +8,7 @@
     android:background="@color/JetBlack">
 
     <ScrollView
+        android:id="@+id/message_scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/editText_message"
@@ -18,7 +19,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/message_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
 
         </androidx.recyclerview.widget.RecyclerView>
     </ScrollView>

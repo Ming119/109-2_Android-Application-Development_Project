@@ -59,4 +59,5 @@
     <string name="schange_username">\tChange Username</string>
     <string name="schange_password">\tChange Password</string>
     <string name="loginFirst">Please Login First</string>
+    <string name="contectSellerSuccess">Message sent\nPlease check your messages box</string>
 </resources>
