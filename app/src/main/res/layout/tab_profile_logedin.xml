@@ -15,14 +15,14 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:adjustViewBounds="false"
+        android:contentDescription="@string/app_name"
         android:rotationX="0"
         android:scaleX="1.5"
         android:scaleY="1.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_profile"
-        tools:srcCompat="@mipmap/ic_profile"
-        android:contentDescription="TODO" />
+        tools:srcCompat="@mipmap/ic_profile" />
 
     <TextView
         android:id="@+id/user_name"
@@ -76,56 +76,57 @@
                 android:id="@+id/text_change_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_username"
                 android:padding="16dp"
-                android:text="    Change Username"
+                android:text="@string/schange_username"
                 android:textColor="@color/White"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_username" />
 
             <TextView
                 android:id="@+id/text_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_password"
                 android:padding="16dp"
-                android:text="    Change Password"
+                android:text="@string/schange_password"
                 android:textColor="@color/White"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_password" />
 
             <TextView
                 android:id="@+id/text_sign_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_logout"
                 android:padding="16dp"
-                android:text="    Sign out"
+                android:text="@string/sign_out"
                 android:textColor="@color/White"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_logout" />
 
             <TextView
                 android:id="@+id/text_contribution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_contribution"
                 android:padding="16dp"
-                android:text="    Contribution"
+                android:text="@string/contribution"
                 android:textColor="@color/White"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_contribution" />
 
             <TextView
                 android:id="@+id/text_version_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_info"
                 android:padding="16dp"
-                android:text="    Version info"
+                android:text="@string/version_info"
                 android:textColor="@color/White"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info"
+                app:drawableLeftCompat="@drawable/ic_info" />
 
         </LinearLayout>
     </ScrollView>

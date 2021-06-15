@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="Project Link"
+        android:text="@string/project_link"
         android:textColor="@color/White"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -22,7 +22,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:paddingBottom="16dp"
-        android:text="https://github.com/Ming119/109-2_Android-Application-Development_Project"
+        android:text="@string/githubURL"
         android:textColor="@color/LightGray"
         android:textSize="14sp" />
 
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="Contributors"
+        android:text="@string/contributors"
         android:textColor="@color/White"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -43,7 +43,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:paddingBottom="8dp"
-        android:text="108590049    Fu Chi Kei"
+        android:text="@string/_108590049_fu_chi_kei"
         android:textColor="@color/LightGray"
         android:textSize="18sp" />
 
@@ -55,7 +55,7 @@
         android:paddingTop="8dp"
         android:paddingRight="32dp"
         android:paddingBottom="8dp"
-        android:text="108590050    Li Ho Ming"
+        android:text="@string/_108590050_li_ho_ming"
         android:textColor="@color/LightGray"
         android:textSize="18sp" />
 
@@ -67,7 +67,7 @@
         android:paddingTop="8dp"
         android:paddingRight="32dp"
         android:paddingBottom="8dp"
-        android:text="108590061    Starvian Huang"
+        android:text="@string/_108590061_starvian_huang"
         android:textColor="@color/LightGray"
         android:textSize="18sp" />
 

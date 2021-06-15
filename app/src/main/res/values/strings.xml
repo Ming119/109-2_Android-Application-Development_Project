@@ -28,11 +28,35 @@
     <string name="registerFail">Register Failed!</string>
     <string name="uploadSuccess">Upload Success!</string>
     <string name="uploadFail">Upload Failed!</string>
+    <string name="deleteSuccess">Delete Success!</string>
+    <string name="deleteFail">Delete Failed!</string>
     <string name="usernameChange">Username Changed!</string>
     <string name="pwChange">Password Changed!</string>
     <string name="changeFail">Change Failed!</string>
     <string name="itemEdit">Item Edit Success!</string>
     <string name="editFail">Edit Failed!</string>
     <string name="error">Error</string>
-
+    <string name="delete_item">Delete Item</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="new_title">New Title</string>
+    <string name="new_description">New Description</string>
+    <string name="new_price">New Price</string>
+    <string name="project_link">Project Link</string>
+    <string name="githubURL">https://github.com/Ming119/109-2_Android-Application-Development_Project</string>
+    <string name="contributors">Contributors</string>
+    <string name="_108590049_fu_chi_kei">108590049 Fu Chi Kei</string>
+    <string name="_108590050_li_ho_ming">108590050 Li Ho Ming</string>
+    <string name="_108590061_starvian_huang">108590061 Starvian Huang</string>
+    <string name="contact_seller">Contact Seller</string>
+    <string name="uplaod_a_new_item">Uplaod A New Item</string>
+    <string name="upload">Upload</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="sign_out">\tSign out</string>
+    <string name="version_info">\tVersion info</string>
+    <string name="contribution">\tContribution</string>
+    <string name="schange_username">\tChange Username</string>
+    <string name="schange_password">\tChange Password</string>
+    <string name="loginFirst">Please Login First</string>
 </resources>

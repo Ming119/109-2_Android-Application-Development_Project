@@ -85,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:onClick="gotoRegister"
         android:text="@string/do_not_have_and_account"
         android:textColor="@color/LightGray" />
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:text="Uplaod A New Item"
+        android:text="@string/uplaod_a_new_item"
         android:textColor="@color/White"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:hint="Title"
+        android:hint="@string/title"
         android:textColorHint="@color/LightGray"
         app:boxStrokeColor="@color/LightGray"
         app:hintTextColor="@color/LightGray">
@@ -36,7 +36,8 @@
             android:inputType="textPersonName"
             android:layout_gravity="center"
             android:background="@color/JetBlack"
-            android:textColor="@color/White"/>
+            android:textColor="@color/White"
+            android:autofillHints="" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:hint="Description"
+        android:hint="@string/description"
         android:textColorHint="@color/LightGray"
         app:boxStrokeColor="@color/LightGray"
         app:hintTextColor="@color/LightGray">
@@ -58,7 +59,8 @@
             android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="textMultiLine"
-            android:textColor="@color/White" />
+            android:textColor="@color/White"
+            android:autofillHints="" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:hint="Price"
+        android:hint="@string/price"
         android:textColorHint="@color/LightGray"
         app:boxStrokeColor="@color/LightGray"
         app:hintTextColor="@color/LightGray">
@@ -80,7 +82,8 @@
             android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="numberDecimal"
-            android:textColor="@color/White" />
+            android:textColor="@color/White"
+            android:autofillHints="" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -90,7 +93,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:ems="16"
-        android:text="Upload" />
+        android:text="@string/upload" />
 
 
 </LinearLayout>

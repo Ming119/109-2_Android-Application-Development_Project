@@ -61,7 +61,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            message = itemView.findViewById(R.id.message_b);
+            message = itemView.findViewById(R.id.message_body);
             itemView.setOnClickListener(this);
         }
 

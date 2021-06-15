@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,25 +39,28 @@ public class ItemDetailsActivity extends AppCompatActivity {
         TextView  price    = findViewById(R.id.Item_price);
         Button    contact  = findViewById(R.id.Item_contact);
 
-        image.setImageResource(R.drawable.was);
-        title.setText(getIntent().getStringExtra("TITLE"));
-        desc.setText(getIntent().getStringExtra("DESC"));
-        price.setText("$ " + getIntent().getStringExtra("PRICE"));
+        image.setImageResource(R.drawable.ntut);
+        title.setText(getIntent().getStringExtra(util.TITLE));
+        desc.setText(getIntent().getStringExtra(util.DESC));
+        price.setText("$ " + getIntent().getStringExtra(util.PRICE));
 
-        if (getIntent().getStringExtra("SELLER").equals(sharedPreferences.getString(util.UID, null))) {
-            contact.setText("Edit Item");
+        if (getIntent().getStringExtra(util.SELLER).equals(sharedPreferences.getString(util.UID, null))) {
+            contact.setText(R.string.edit_item);
         }
 
         contact.setOnClickListener(v -> {
-            if (contact.getText().equals("Edit Item")) {
+            if (contact.getText().equals(util.EDIT_ITEM)) {
                 Intent editItemActivity = new Intent(this, EditItemActivity.class);
                 editItemActivity.putExtra(util.ID, id);
                 startActivity(editItemActivity);
 
             } else if (sharedPreferences.getString(util.UID, null) == null) {
-                //Intent intent = new Intent(this, .class);
-                //startActivity(intent);
+                Toast.makeText(this, R.string.loginFirst, Toast.LENGTH_LONG).show();
+
+                // TODO: goto LOGIN page if possible
+
             } else {
+                // TODO:
 
             }
         });

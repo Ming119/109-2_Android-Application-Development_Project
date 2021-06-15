@@ -35,4 +35,6 @@ public interface util {
     String githubFCK = "https://github.com/FuChiKei";
     String githubLHM = "https://github.com/Ming119";
     String githubSVH = "https://github.com/HuangShengYao108590061";
+
+    String EDIT_ITEM = "Edit Item";
 }

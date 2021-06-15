@@ -90,7 +90,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
 
         public void bindTo(@NonNull Item item) {
-            itemImage.setImageResource(R.drawable.was);
+            itemImage.setImageResource(R.drawable.ntut);
             itemTitle.setText(item.getTitle());
             itemInfo.setText(item.getDescription());
         }

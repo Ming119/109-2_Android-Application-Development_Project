@@ -2,6 +2,7 @@ package edu.ntut.finalproject.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -60,6 +61,21 @@ public class EditItemActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(EditItemActivity.this, R.string.editFail, Toast.LENGTH_LONG).show();
                 }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        Button deletebtn = findViewById(R.id.edit_item_delete);
+        deletebtn.setOnClickListener(v -> {
+            Item item = new Item();
+            try {
+                if (item.deleteItem(getIntent().getIntExtra(util.ID, 0))) {
+                    Toast.makeText(EditItemActivity.this, R.string.deleteSuccess, Toast.LENGTH_SHORT).show();
+                    finish();
+                } else
+                    Toast.makeText(EditItemActivity.this, R.string.deleteFail, Toast.LENGTH_LONG).show();
 
             } catch (IOException e) {
                 e.printStackTrace();
