@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/JetBlack"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="@string/edit_item"
+        android:textColor="@color/White"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/LightGray"
+        app:boxStrokeColor="@color/LightGray"
+        app:hintTextColor="@color/LightGray">
+
+        <EditText
+            android:id="@+id/edit_item_new_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autofillHints="@string/studentID"
+            android:background="@color/JetBlack"
+            android:ems="16"
+            android:hint="@string/new_title"
+            android:inputType="textPersonName"
+            android:textColor="@color/White" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/LightGray"
+        app:boxStrokeColor="@color/LightGray"
+        app:hintTextColor="@color/LightGray">
+
+        <EditText
+            android:id="@+id/edit_item_new_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autofillHints="@string/studentID"
+            android:background="@color/JetBlack"
+            android:ems="16"
+            android:hint="@string/new_description"
+            android:inputType="textPersonName"
+            android:textColor="@color/White" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/LightGray"
+        app:boxStrokeColor="@color/LightGray"
+        app:hintTextColor="@color/LightGray">
+
+        <EditText
+            android:id="@+id/edit_item_new_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autofillHints="@string/studentID"
+            android:background="@color/JetBlack"
+            android:ems="16"
+            android:hint="@string/new_price"
+            android:inputType="number"
+            android:textColor="@color/White" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/edit_item_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:ems="16"
+        android:text="@string/edit_item" />
+
+    <Button
+        android:id="@+id/edit_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:ems="16"
+        android:text="@string/delete_item"
+        app:backgroundTint="@color/DarkRed" />
+
+</LinearLayout>

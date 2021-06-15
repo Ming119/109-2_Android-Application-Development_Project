@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/JetBlack"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/Item_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@color/White"
+        android:contentDescription="@string/app_name"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/Item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:textColor="@color/White"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/Item_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:textColor="@color/LightGray"
+        android:textSize="48sp" />
+
+    <TextView
+        android:id="@+id/Item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:textColor="@color/White"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/Item_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:text="@string/contact_seller"
+        android:textSize="60sp" />
+</LinearLayout>
