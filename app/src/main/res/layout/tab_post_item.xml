@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/JetBlack">
+    android:background="@drawable/items_bg"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/text_upload_new_item"
@@ -14,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:text="@string/uplaod_a_new_item"
-        android:textColor="@color/White"
+        android:textColor="@color/JetBlack"
         android:textSize="36sp"
         android:textStyle="bold" />
 
@@ -32,12 +31,12 @@
             android:id="@+id/upload_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autofillHints=""
+            android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="textPersonName"
-            android:layout_gravity="center"
-            android:background="@color/JetBlack"
-            android:textColor="@color/White"
-            android:autofillHints="" />
+            android:textColor="@color/White" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,11 +55,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:autofillHints=""
             android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="textMultiLine"
-            android:textColor="@color/White"
-            android:autofillHints="" />
+            android:textColor="@color/White" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,11 +78,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:autofillHints=""
             android:background="@color/JetBlack"
             android:ems="16"
             android:inputType="numberDecimal"
-            android:textColor="@color/White"
-            android:autofillHints="" />
+            android:textColor="@color/White" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

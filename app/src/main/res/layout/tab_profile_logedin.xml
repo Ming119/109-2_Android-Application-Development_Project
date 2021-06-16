@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/JetBlack"
+    android:background="@drawable/loggedin_bg_v2"
     android:rotation="0">
 
     <ImageView
@@ -125,8 +125,8 @@
                 android:textColor="@color/White"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:drawableStartCompat="@drawable/ic_info"
-                app:drawableLeftCompat="@drawable/ic_info" />
+                app:drawableLeftCompat="@drawable/ic_info"
+                app:drawableStartCompat="@drawable/ic_info" />
 
         </LinearLayout>
     </ScrollView>
