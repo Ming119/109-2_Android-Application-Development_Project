@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/JetBlack">
+    android:background="@drawable/loggedin_bg_v2_land">
 
     <TextView
         android:id="@+id/user_name"
