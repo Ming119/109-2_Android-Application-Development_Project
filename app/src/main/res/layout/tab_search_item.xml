@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/JetBlack"
+    android:background="#CDFFFFFF"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/search_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/White"
+        android:textColor="@color/JetBlack"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/search_item_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/LightGray" />
+        android:textColor="@color/DarkGray" />
 
     <View
         android:layout_width="match_parent"

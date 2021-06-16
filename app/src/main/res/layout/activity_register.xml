@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/JetBlack"
+    android:background="@drawable/hnet_com_image"
     android:orientation="vertical">
 
     <TextView
@@ -16,7 +16,8 @@
         android:text="@string/register"
         android:textColor="@color/White"
         android:textSize="36sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"

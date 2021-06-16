@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/JetBlack"
+    android:background="@drawable/items_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -23,7 +23,7 @@
         android:layout_marginTop="32dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:textColor="@color/White"
+        android:textColor="@color/JetBlack"
         android:textSize="36sp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginTop="16dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:textColor="@color/LightGray"
+        android:textColor="@color/DarkGray"
         android:textSize="24sp" />
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_marginBottom="64dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:textColor="@color/White"
+        android:textColor="@color/JetBlack"
         android:textSize="14sp" />
 
     <Button
