@@ -1,4 +1,5 @@
 # 109-2_Android-Application-Development_Project
+#### Current Version: Beta 0617
 
 ### Database Web APIs
 #### By 108590050  
