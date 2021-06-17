@@ -29,7 +29,7 @@ public interface util {
     String FROMUID  = "fromUID";
     String TOUID    = "toUID";
     String MSG      = "message";
-    String RCID     = "rcid";
+    String CRID     = "crid";
     String GET      = "GET";
     String POST     = "POST";
 

@@ -61,12 +61,11 @@ public class Message {
         JSONArray chatArray = jsonObject.getJSONArray(util.CHATs);
 
         ArrayList<Message> chats = new ArrayList<>();
-        if (chatArray == null) return null;
 
         for (int i = 0; i < chatArray.length(); i++) {
             JSONObject chat = chatArray.getJSONObject(i);
 
-            int     cid  = Integer.parseInt(chat.getString(util.RCID));
+            int     cid  = Integer.parseInt(chat.getString(util.CRID));
             String  fuid = chat.getString(util.FROMUID);
             String  tuid = chat.getString(util.TOUID);
             String  cmsg = chat.getString(util.MSG);

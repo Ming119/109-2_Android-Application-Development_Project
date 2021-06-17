@@ -78,6 +78,7 @@ public class MessageActivity extends AppCompatActivity {
             try {
                 if (m.newMessage(from, to, s)) {
                     Toast.makeText(MessageActivity.this, R.string.sent, Toast.LENGTH_LONG).show();
+                    editText.setText("");
                     Message message = new Message(from);
                     messageArray = message.getMessages(to);
                     messageAdapter.setMessageArray(messageArray);

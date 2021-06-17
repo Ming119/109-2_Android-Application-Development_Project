@@ -319,7 +319,7 @@ public class Database {
     public boolean deleteChat(int rcid) throws IOException {
         String url = util.BASE_URL + "DeleteChatRecord?";
         Uri builtURI = Uri.parse(url).buildUpon()
-                .appendQueryParameter(util.RCID, String.valueOf(rcid))
+                .appendQueryParameter(util.CRID, String.valueOf(rcid))
                 .build();
 
         connect(builtURI, util.POST);
