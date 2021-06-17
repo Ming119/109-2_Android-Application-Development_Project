@@ -60,7 +60,7 @@ public class Database {
         });
         executorService.shutdown();
         try {
-            executorService.awaitTermination(1, TimeUnit.SECONDS);
+            executorService.awaitTermination(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -122,9 +122,11 @@ public class Database {
 
         connect(builtURI, util.GET);
 
-        if (response != null) {
+        while (response == null)
+            connect(builtURI, util.GET);
+
+        if (response != null)
             return JSON2String(response);
-        }
 
         return null;
     }
@@ -183,10 +185,11 @@ public class Database {
         Uri builtURI = Uri.parse(url).buildUpon().build();
 
         connect(builtURI, util.GET);
+        while (response == null)
+            connect(builtURI, util.GET);
 
-        if (response != null) {
+        if (response != null)
             return JSON2String(response);
-        }
 
         return null;
     }
@@ -204,10 +207,11 @@ public class Database {
                 .build();
 
         connect(builtURI, util.GET);
+        while (response == null)
+            connect(builtURI, util.GET);
 
-        if (response != null) {
+        if (response != null)
             return JSON2String(response);
-        }
 
         return null;
     }
@@ -304,9 +308,11 @@ public class Database {
 
         connect(builtURI, util.GET);
 
-        if (response != null) {
+        while (response == null)
+            connect(builtURI, util.GET);
+
+        if (response != null)
             return JSON2String(response);
-        }
 
         return null;
     }

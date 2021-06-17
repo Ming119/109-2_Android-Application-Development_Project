@@ -5,6 +5,7 @@
  * Scheduled changes
  * TODO: Beautify the Message layout like a modern communication app.
  * TODO: Pop up Notification while received Messages from others.
+ * TODO: Unsend Message
  *
  */
 
