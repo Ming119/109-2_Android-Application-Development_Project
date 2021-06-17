@@ -21,7 +21,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     private final Context context;
 
-    private String uid;
+    private final String uid;
     private ArrayList<Chat> chatArray;
 
     public ChatAdapter(Context context, ArrayList<Chat> messageArray, String uid) {

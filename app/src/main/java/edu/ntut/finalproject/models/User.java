@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import edu.ntut.finalproject.util;
+
 public class User {
 
     private static final Database db = new Database();
@@ -30,9 +32,9 @@ public class User {
             JSONString = db.getUser(uid);
 
             JSONObject jsonObject = new JSONObject(JSONString);
-            JSONArray usersArray = jsonObject.getJSONArray("user");
+            JSONArray usersArray = jsonObject.getJSONArray(util.USER);
             JSONObject user = usersArray.getJSONObject(0);
-            this.name  = user.getString("name");
+            this.name  = user.getString(util.NAME);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,19 +59,16 @@ public class User {
         String JSONString = db.getUser(uid);
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray usersArray = jsonObject.getJSONArray("user");
+        JSONArray usersArray = jsonObject.getJSONArray(util.USER);
 
-        if (usersArray == null) return false;
-        else {
-            JSONObject user = usersArray.getJSONObject(0);
-            String password = user.getString("password");
+        JSONObject user = usersArray.getJSONObject(0);
+        String password = user.getString(util.PW);
 
-            if (password.equals(pw)) {
-                this.uid  = user.getString("uid");
-                this.name = user.getString("name");
+        if (password.equals(pw)) {
+            this.uid  = user.getString(util.lUID);
+            this.name = user.getString(util.NAME);
 
-                return true;
-            }
+            return true;
         }
 
         return false;

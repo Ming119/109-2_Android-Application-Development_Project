@@ -1,8 +1,15 @@
+/**
+ * No more changes will be made before presentation
+ * By 108590050
+ *
+ * Scheduled changes
+ * TODO: Show the original Item info so that user can easily know what they're going to change
+ *
+ */
+
 package edu.ntut.finalproject.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,10 +71,8 @@ public class EditItemActivity extends AppCompatActivity {
                     Toast.makeText(EditItemActivity.this, R.string.itemEdit, Toast.LENGTH_SHORT).show();
 
                     finish();
-                } else {
-                    Log.d("new item?", id + t + d + p);
+                } else
                     Toast.makeText(EditItemActivity.this, R.string.editFail, Toast.LENGTH_LONG).show();
-                }
 
             } catch (IOException e) {
                 e.printStackTrace();

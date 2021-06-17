@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.ntut.finalproject.util;
+
 public class Message {
     private static final Database db = new Database();
 
@@ -56,7 +58,7 @@ public class Message {
         if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray chatArray = jsonObject.getJSONArray("chatRecord");
+        JSONArray chatArray = jsonObject.getJSONArray(util.CHATs);
 
         ArrayList<Message> chats = new ArrayList<>();
         if (chatArray == null) return null;
@@ -64,10 +66,10 @@ public class Message {
         for (int i = 0; i < chatArray.length(); i++) {
             JSONObject chat = chatArray.getJSONObject(i);
 
-            int     cid  = Integer.parseInt(chat.getString("crid"));
-            String  fuid = chat.getString("fromUID");
-            String  tuid = chat.getString("toUID");
-            String  cmsg = chat.getString("message");
+            int     cid  = Integer.parseInt(chat.getString(util.RCID));
+            String  fuid = chat.getString(util.FROMUID);
+            String  tuid = chat.getString(util.TOUID);
+            String  cmsg = chat.getString(util.MSG);
 
             chats.add(new Message(cid, fuid, tuid, cmsg));
         }

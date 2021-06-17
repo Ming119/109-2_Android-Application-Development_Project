@@ -1,6 +1,13 @@
+/**
+ * No more changes will be made before presentation
+ * By 108590050
+ *
+ * Final Version
+ *
+ */
+
 package edu.ntut.finalproject.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;

@@ -11,14 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
-import edu.ntut.finalproject.models.Item;
 import edu.ntut.finalproject.activities.ItemDetailsActivity;
+import edu.ntut.finalproject.models.Item;
 import edu.ntut.finalproject.util;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {

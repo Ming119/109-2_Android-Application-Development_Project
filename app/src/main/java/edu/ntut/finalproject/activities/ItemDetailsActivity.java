@@ -1,18 +1,24 @@
+/**
+ * No more changes will be made before presentation
+ * By 108590050
+ *
+ * Scheduled changes
+ * TODO: Jump to the Login page, if possible, while User is not logged in and clicking the `Context Seller` Button.
+ * TODO: Jump to the Message page, if possible, after clicking the `Context Seller` Button.
+ *
+ */
+
 package edu.ntut.finalproject.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;

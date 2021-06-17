@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.ntut.finalproject.util;
+
 public class Item {
     private static final Database db = new Database();
 
@@ -64,19 +66,18 @@ public class Item {
         if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray itemsArray = jsonObject.getJSONArray("items");
-        if (itemsArray == null) return null;
+        JSONArray itemsArray = jsonObject.getJSONArray(util.ITEM);
 
         ArrayList items = new ArrayList<Item>();
         for (int i = 0; i < itemsArray.length(); i++) {
             JSONObject item = itemsArray.getJSONObject(i);
 
-            int     iid    = Integer.parseInt(item.getString("id"));
-            String  ititle = item.getString("title");
-            String  idesc  = item.getString("description");
-            int     iprice = Integer.parseInt(item.getString("price"));
-            String  iuid   = item.getString("uid");
-            boolean isold  = Boolean.parseBoolean(item.getString("sold"));
+            int     iid    = Integer.parseInt(item.getString(util.lID));
+            String  ititle = item.getString(util.lTITLE);
+            String  idesc  = item.getString(util.lfDESC);
+            int     iprice = Integer.parseInt(item.getString(util.lPRICE));
+            String  iuid   = item.getString(util.lUID);
+            boolean isold  = Boolean.parseBoolean(item.getString(util.SOLD));
 
             items.add(new Item(iid, ititle, idesc, iprice, iuid, isold));
         }
@@ -95,15 +96,15 @@ public class Item {
         String JSONString = db.getItem(id);
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray itemsArray = jsonObject.getJSONArray("items");
+        JSONArray itemsArray = jsonObject.getJSONArray(util.ITEM);
 
         JSONObject item = itemsArray.getJSONObject(0);
-        int     iid    = Integer.parseInt(item.getString("id"));
-        String  ititle = item.getString("title");
-        String  idesc  = item.getString("description");
-        int     iprice = Integer.parseInt(item.getString("price"));
-        String  iuid   = item.getString("uid");
-        boolean isold  = Boolean.parseBoolean(item.getString("sold"));
+        int     iid    = Integer.parseInt(item.getString(util.lID));
+        String  ititle = item.getString(util.lTITLE);
+        String  idesc  = item.getString(util.lfDESC);
+        int     iprice = Integer.parseInt(item.getString(util.lPRICE));
+        String  iuid   = item.getString(util.lUID);
+        boolean isold  = Boolean.parseBoolean(item.getString(util.SOLD));
 
         return new Item(iid, ititle, idesc, iprice, iuid, isold);
     }

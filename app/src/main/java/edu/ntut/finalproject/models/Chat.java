@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import edu.ntut.finalproject.util;
+
 public class Chat {
 
     private static final Database db = new Database();
@@ -48,17 +50,16 @@ public class Chat {
         if (JSONString == null) return null;
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray chatArray = jsonObject.getJSONArray("chat");
+        JSONArray chatArray = jsonObject.getJSONArray(util.CHAT);
 
         ArrayList<Chat> chats = new ArrayList<>();
-        if (chatArray == null) return null;
 
         for (int i = 0; i < chatArray.length(); i++) {
             JSONObject chat = chatArray.getJSONObject(i);
 
-            String  fuid = chat.getString("fromUID");
-            String  tuid = chat.getString("toUID");
-            String  cmsg = chat.getString("message");
+            String  fuid = chat.getString(util.FROMUID);
+            String  tuid = chat.getString(util.TOUID);
+            String  cmsg = chat.getString(util.MSG);
 
             chats.add(new Chat(fuid, tuid, cmsg));
         }

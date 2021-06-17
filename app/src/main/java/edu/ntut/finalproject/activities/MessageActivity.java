@@ -1,12 +1,20 @@
+/**
+ * No more changes will be made before presentation
+ * By 108590050
+ *
+ * Scheduled changes
+ * TODO: Beautify the Message layout like a modern communication app.
+ * TODO: Pop up Notification while received Messages from others.
+ *
+ */
+
 package edu.ntut.finalproject.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
-import android.widget.Scroller;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
@@ -40,6 +47,7 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message);
 
         ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null) throw new AssertionError();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         from = getIntent().getStringExtra(util.FROM);
@@ -74,6 +82,8 @@ public class MessageActivity extends AppCompatActivity {
                     messageArray = message.getMessages(to);
                     messageAdapter.setMessageArray(messageArray);
                     messageAdapter.notifyDataSetChanged();
+
+                    // TODO: notify the receiver, also.
 
                 } else
                     Toast.makeText(MessageActivity.this, R.string.error, Toast.LENGTH_LONG).show();

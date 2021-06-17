@@ -64,18 +64,18 @@ public class TabFragment_profile_login extends Fragment {
             User user = new User();
             try {
                 if (user.Login(lid, lpw)) {
-                    Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.loginSuccess, Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
-                    preferencesEditor.putString("UID", user.getUid());
-                    preferencesEditor.putString("USERNAME", user.getName());
+                    preferencesEditor.putString(util.UID, user.getUid());
+                    preferencesEditor.putString(util.USERNAME, user.getName());
                     preferencesEditor.apply();
 
                     Intent main =  getActivity().getIntent();
                     getActivity().finish();
                     startActivity(main);
                 } else
-                    Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.loginFail, Toast.LENGTH_LONG).show();
 
             } catch (Exception e) {
                 e.printStackTrace();

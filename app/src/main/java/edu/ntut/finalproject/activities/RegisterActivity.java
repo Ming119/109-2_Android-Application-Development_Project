@@ -1,3 +1,12 @@
+/**
+ * No more changes will be made before presentation
+ * By 108590050
+ *
+ * Scheduled changes
+ * TODO: Show the original Item info so that user can easily know what they're going to change
+ *
+ */
+
 package edu.ntut.finalproject.activities;
 
 import android.content.Intent;

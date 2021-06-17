@@ -23,6 +23,8 @@
     <string name="nullTitle">Title cannot be empty</string>
     <string name="nullPrice">Price cannot be empty</string>
     <string name="pwNotMatch">Passwords did not match</string>
+    <string name="loginSuccess">Login Success!</string>
+    <string name="loginFail">Login Failed!</string>
     <string name="registerSuccess">Register Success!</string>
     <string name="registerFail">Register Failed!</string>
     <string name="uploadSuccess">Upload Success!</string>
