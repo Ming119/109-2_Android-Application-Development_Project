@@ -161,7 +161,18 @@ Return:
 > /GetChatRecord
 ````
 
-#### Get a chat record by a uid
+#### Get chat records between two user
+Parameters:
++ fromUID: userID
++ toUID: userID
+
+Return:
++ a list of chat record data in JSON format.
+````php
+> /GetChatRecord?fromUID=userID&toUID=userID
+````
+
+#### Get all last Chat Record
 Parameters:
 + uid: userID
 
