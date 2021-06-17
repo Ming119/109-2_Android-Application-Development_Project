@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import edu.ntut.finalproject.R;
 import edu.ntut.finalproject.adapters.MessageAdapter;
@@ -27,7 +28,11 @@ public class MessageActivity extends AppCompatActivity {
     private String from;
     private String to;
     private ScrollView scrollView;
+    private ArrayList<Message> messageArray;
+
     private EditText editText;
+    private MessageAdapter messageAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +50,17 @@ public class MessageActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.message_scrollView);
         scrollView.post(() -> scrollView.fullScroll(ScrollView.FOCUS_DOWN));
 
+        Message messaage = new Message(from);
+        try {
+            messageArray = messaage.getMessages(to);
+            messageAdapter = new MessageAdapter(this, from, to, messageArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         RecyclerView recyclerView = findViewById(R.id.message_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MessageAdapter(this, from, to));
+        recyclerView.setAdapter(messageAdapter);
 
         Button send = findViewById(R.id.send_message);
         send.setOnClickListener(v -> {
@@ -56,11 +69,16 @@ public class MessageActivity extends AppCompatActivity {
             Message m = new Message();
             try {
                 if (m.newMessage(from, to, s)) {
+                    Toast.makeText(MessageActivity.this, R.string.sent, Toast.LENGTH_LONG).show();
+                    Message message = new Message(from);
+                    messageArray = message.getMessages(to);
+                    messageAdapter.setMessageArray(messageArray);
+                    messageAdapter.notifyDataSetChanged();
 
-                } else {
+                } else
                     Toast.makeText(MessageActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-                }
-            } catch (IOException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

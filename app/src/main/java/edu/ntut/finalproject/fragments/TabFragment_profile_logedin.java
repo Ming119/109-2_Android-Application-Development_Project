@@ -25,6 +25,12 @@ public class TabFragment_profile_logedin extends Fragment {
     private Context context;
     private SharedPreferences sharedPreferences;
 
+    private TextView user_name;
+    private TextView user_id;
+
+    private String uname;
+    private String uid;
+
     public TabFragment_profile_logedin() { }
 
     @Nullable
@@ -35,11 +41,14 @@ public class TabFragment_profile_logedin extends Fragment {
 
         sharedPreferences = context.getSharedPreferences(util.sharePrefName, Context.MODE_PRIVATE);
 
-        TextView user_name = view.findViewById(R.id.user_name);
-        TextView user_id = view.findViewById(R.id.user_id);
+        user_name = view.findViewById(R.id.user_name);
+        user_id   = view.findViewById(R.id.user_id);
 
-        user_name.setText(sharedPreferences.getString(util.USERNAME, null));
-        user_id.setText(sharedPreferences.getString(util.UID, null));
+        uname = sharedPreferences.getString(util.USERNAME, null);
+        uid   = sharedPreferences.getString(util.UID, null);
+
+        user_name.setText(uname);
+        user_id.setText(uid);
 
         TextView change_username = view.findViewById(R.id.text_change_username);
         change_username.setOnClickListener(view12 -> {
@@ -87,4 +96,14 @@ public class TabFragment_profile_logedin extends Fragment {
         super.onAttach(context);
     }
 
+    @Override
+    public void onResume() {
+        uname = sharedPreferences.getString(util.USERNAME, null);
+        uid   = sharedPreferences.getString(util.UID, null);
+
+        user_name.setText(uname);
+        user_id.setText(uid);
+
+        super.onResume();
+    }
 }

@@ -1,26 +1,39 @@
 package edu.ntut.finalproject.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 
 import edu.ntut.finalproject.R;
+import edu.ntut.finalproject.models.Item;
 import edu.ntut.finalproject.models.Message;
 import edu.ntut.finalproject.util;
 
 public class ItemDetailsActivity extends AppCompatActivity {
+
+    private TextView  title;
+    private TextView  desc;
+    private TextView  price;
 
     private int id;
     private String from;
@@ -29,6 +42,12 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private String sTitle;
     private String sDesc;
     private String sPrice;
+
+    ActivityResultLauncher<Intent> editItemActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == 1)
+                    finish();
+            });
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,9 +67,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
 
         ImageView image    = findViewById(R.id.Item_image);
-        TextView  title    = findViewById(R.id.Item_title);
-        TextView  desc     = findViewById(R.id.Item_desc);
-        TextView  price    = findViewById(R.id.Item_price);
+        title    = findViewById(R.id.Item_title);
+        desc     = findViewById(R.id.Item_desc);
+        price    = findViewById(R.id.Item_price);
         Button    contact  = findViewById(R.id.Item_contact);
 
         image.setImageResource(R.drawable.ntut);
@@ -66,7 +85,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
             if (contact.getText().equals(util.EDIT_ITEM)) {
                 Intent editItemActivity = new Intent(this, EditItemActivity.class);
                 editItemActivity.putExtra(util.ID, id);
-                startActivity(editItemActivity);
+                editItemActivityResultLauncher.launch(editItemActivity);
+
 
             } else if (from == null) {
                  // temporarily implemented with Toast
@@ -103,4 +123,27 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onResume() {
+        Item item = new Item();
+        try {
+            item = item.getItem(id);
+            sTitle = item.getTitle();
+            sDesc  = item.getDescription();
+            sPrice = "$ " + item.getPrice();
+
+            title.setText(sTitle);
+            desc.setText(sDesc);
+            price.setText(sPrice);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        super.onResume();
+    }
+
 }

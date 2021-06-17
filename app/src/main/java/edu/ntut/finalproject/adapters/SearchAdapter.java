@@ -29,19 +29,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
     private ArrayList<Item> itemArray;
     private ArrayList<Item> filteredItemArray;
 
-    public SearchAdapter(Context context) {
+    public SearchAdapter(Context context, ArrayList<Item> itemArray) {
         this.context = context;
-
-        Item item = new Item();
-
-        try {
-            this.itemArray = item.getItems();
-            this.filteredItemArray = itemArray;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        this.itemArray = itemArray;
+        this.filteredItemArray = this.itemArray;
     }
 
     @NonNull
@@ -89,6 +80,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
         };
     }
 
+    public void setItemArray(ArrayList<Item> itemArray) {
+        this.itemArray = itemArray;
+        this.filteredItemArray = this.itemArray;
+    }
+
     protected class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView searchItemTitle;
@@ -108,6 +104,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ItemViewHo
             Item item = filteredItemArray.get((getAdapterPosition()));
             Intent itemDetail = new Intent(v.getContext(), ItemDetailsActivity.class);
 
+            itemDetail.putExtra(util.ID, item.getID());
             itemDetail.putExtra(util.TITLE, item.getTitle());
             itemDetail.putExtra(util.DESC, item.getDescription());
             itemDetail.putExtra(util.PRICE, String.valueOf(item.getPrice()));

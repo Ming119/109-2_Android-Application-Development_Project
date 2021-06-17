@@ -51,7 +51,7 @@ public class Message {
      * @return  String like JSON array
      * @throws Exception Connection Error
      */
-    public ArrayList<Message> getChats(String toUID) throws Exception {
+    public ArrayList<Message> getMessages(String toUID) throws Exception {
         String JSONString = db.getChats(this.fromUID, toUID);
         if (JSONString == null) return null;
 

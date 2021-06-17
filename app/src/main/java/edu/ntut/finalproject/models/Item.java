@@ -95,7 +95,7 @@ public class Item {
         String JSONString = db.getItem(id);
 
         JSONObject jsonObject = new JSONObject(JSONString);
-        JSONArray itemsArray = jsonObject.getJSONArray("item");
+        JSONArray itemsArray = jsonObject.getJSONArray("items");
 
         JSONObject item = itemsArray.getJSONObject(0);
         int     iid    = Integer.parseInt(item.getString("id"));

@@ -1,8 +1,9 @@
 package edu.ntut.finalproject.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import edu.ntut.finalproject.util;
 
 public class EditItemActivity extends AppCompatActivity {
 
+    private int id;
+
     private EditText title;
     private EditText desc;
     private EditText price;
@@ -31,6 +34,8 @@ public class EditItemActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+
+        id = getIntent().getIntExtra(util.ID, 0);
 
         title = findViewById(R.id.edit_item_new_title);
         desc  = findViewById(R.id.edit_item_new_desc);
@@ -55,10 +60,12 @@ public class EditItemActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (item.updateItem(getIntent().getIntExtra(util.ID, 0), t, d, Integer.parseInt(p))) {
+                if (item.updateItem(id, t, d, Integer.parseInt(p))) {
                     Toast.makeText(EditItemActivity.this, R.string.itemEdit, Toast.LENGTH_SHORT).show();
+
                     finish();
                 } else {
+                    Log.d("new item?", id + t + d + p);
                     Toast.makeText(EditItemActivity.this, R.string.editFail, Toast.LENGTH_LONG).show();
                 }
 
@@ -67,12 +74,30 @@ public class EditItemActivity extends AppCompatActivity {
             }
         });
 
+        Button soldbtn = findViewById(R.id.edit_item_sold);
+        soldbtn.setOnClickListener(v -> {
+            Item item = new Item();
+
+            try {
+                if (item.itemSold(id)) {
+                    Toast.makeText(EditItemActivity.this, R.string.sold, Toast.LENGTH_SHORT).show();
+                    finish();
+                } else
+                    Toast.makeText(EditItemActivity.this, R.string.error, Toast.LENGTH_LONG).show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
         Button deletebtn = findViewById(R.id.edit_item_delete);
         deletebtn.setOnClickListener(v -> {
             Item item = new Item();
             try {
-                if (item.deleteItem(getIntent().getIntExtra(util.ID, 0))) {
+                if (item.deleteItem(id)) {
                     Toast.makeText(EditItemActivity.this, R.string.deleteSuccess, Toast.LENGTH_SHORT).show();
+                    setResult(1);
                     finish();
                 } else
                     Toast.makeText(EditItemActivity.this, R.string.deleteFail, Toast.LENGTH_LONG).show();

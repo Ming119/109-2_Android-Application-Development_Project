@@ -21,17 +21,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     private final Context context;
 
-    private ArrayList<Chat> messageArray;
+    private String uid;
+    private ArrayList<Chat> chatArray;
 
-    public ChatAdapter(Context context, String uid) {
-        this.context = context;
-
-        Chat chat = new Chat();
-        try {
-            this.messageArray = chat.getChats(uid);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public ChatAdapter(Context context, ArrayList<Chat> messageArray, String uid) {
+        this.context   = context;
+        this.chatArray = messageArray;
+        this.uid       = uid;
     }
 
     @NonNull
@@ -42,14 +38,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        if (messageArray == null) return;
-        holder.bindTo(messageArray.get(position));
+        if (chatArray == null) return;
+        holder.bindTo(chatArray.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if (messageArray == null) return 0;
-        return messageArray.size();
+        if (chatArray == null) return 0;
+        return chatArray.size();
+    }
+
+    public void setMessageArray(ArrayList<Chat> messageArray) {
+        this.chatArray = messageArray;
     }
 
     public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -68,17 +68,26 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
         @Override
         public void onClick(View v) {
-            Chat chat = messageArray.get(getAdapterPosition());
+            Chat chat = chatArray.get(getAdapterPosition());
 
             Intent message = new Intent(context, MessageActivity.class);
-            message.putExtra(util.FROM, chat.getFromUID());
-            message.putExtra(util.TO, chat.getToUID());
+            if (chat.getToUID().equals(uid)) {
+                message.putExtra(util.FROM, uid);
+                message.putExtra(util.TO, chat.getFromUID());
+            } else {
+                message.putExtra(util.FROM, uid);
+                message.putExtra(util.TO, chat.getToUID());
+            }
 
             context.startActivity(message);
         }
 
         public void bindTo(@NonNull Chat chat) {
-            toUID.setText(chat.getToUID());
+            if (chat.getToUID().equals(uid))
+                toUID.setText(chat.getFromUID());
+            else
+                toUID.setText(chat.getToUID());
+
             lastMesg.setText(chat.getLastMesg());
         }
     }

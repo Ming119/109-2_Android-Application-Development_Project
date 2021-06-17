@@ -15,7 +15,6 @@
     <string name="change_password">Change Password</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
-    <string name="version">Beta 210615</string>
     <string name="alphaBetaWaring">Please be reminded that the app is still on developing.\nYour data may not be encrypted during the connection.\nYour data may be unencrypted and stored in the database.\nDO NOT enter ant real data of yours.</string>
     <string name="nullUID">Student ID cannot be empty</string>
     <string name="UIDformat">Student ID format error</string>
@@ -35,6 +34,7 @@
     <string name="changeFail">Change Failed!</string>
     <string name="itemEdit">Item Edit Success!</string>
     <string name="editFail">Edit Failed!</string>
+    <string name="sent">Message sent!</string>
     <string name="error">Error</string>
     <string name="delete_item">Delete Item</string>
     <string name="edit_item">Edit Item</string>
@@ -48,8 +48,8 @@
     <string name="_108590050_li_ho_ming">108590050 Li Ho Ming</string>
     <string name="_108590061_starvian_huang">108590061 Starvian Huang</string>
     <string name="contact_seller">Contact Seller</string>
-    <string name="uplaod_a_new_item">Uplaod A New Item</string>
-    <string name="upload">Upload</string>
+    <string name="uplaod_a_new_item">List A New Item</string>
+    <string name="upload">List</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="price">Price</string>
@@ -60,4 +60,7 @@
     <string name="schange_password">\tChange Password</string>
     <string name="loginFirst">Please Login First</string>
     <string name="contectSellerSuccess">Message sent\nPlease check your messages box</string>
+    <string name="mark_as_sold">Mark as sold</string>
+    <string name="sold">Item marked as sold</string>
+    <string name="version">Beta 0617</string>
 </resources>

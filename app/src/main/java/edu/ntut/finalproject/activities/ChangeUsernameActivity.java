@@ -1,5 +1,6 @@
 package edu.ntut.finalproject.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -72,6 +73,7 @@ public class ChangeUsernameActivity extends AppCompatActivity {
                     preferencesEditor.apply();
 
                     finish();
+
                 } else {
                     Toast.makeText(ChangeUsernameActivity.this, R.string.changeFail, Toast.LENGTH_LONG).show();
                 }

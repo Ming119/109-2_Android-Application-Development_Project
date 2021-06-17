@@ -23,17 +23,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private final String toUID;
     private ArrayList<Message> messageArray;
 
-    public MessageAdapter(Context context, String from, String to) {
+    public MessageAdapter(Context context, String from, String to, ArrayList<Message> messageArray) {
         this.context = context;
         this.fromUID = from;
         this.toUID   = to;
-
-        Message message = new Message(fromUID);
-        try {
-            this.messageArray = message.getChats(toUID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.messageArray = messageArray;
     }
 
     @NonNull
@@ -52,6 +46,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public int getItemCount() {
         if (messageArray == null) return 0;
         return messageArray.size();
+    }
+
+    public void setMessageArray(ArrayList<Message> messageArray) {
+        this.messageArray = messageArray;
     }
 
     protected class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

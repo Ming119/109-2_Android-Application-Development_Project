@@ -97,6 +97,16 @@
         android:text="@string/edit_item" />
 
     <Button
+        android:id="@+id/edit_item_sold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:ems="16"
+        android:text="@string/mark_as_sold"
+        app:backgroundTint="@color/Green" />
+
+    <Button
         android:id="@+id/edit_item_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

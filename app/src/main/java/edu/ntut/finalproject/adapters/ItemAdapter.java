@@ -27,18 +27,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private ArrayList<Item> itemArray;
 
-    public ItemAdapter(Context context) {
+    public ItemAdapter(Context context, ArrayList<Item> itemArray) {
         this.context = context;
-
-        Item item = new Item();
-
-        try {
-            this.itemArray = item.getItems();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        this.itemArray = itemArray;
     }
 
     @NonNull
@@ -57,6 +48,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public int getItemCount() {
         if (itemArray == null) return 0;
         return itemArray.size();
+    }
+
+    public void setItemArray(ArrayList<Item> itemArray) {
+        this.itemArray = itemArray;
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -95,4 +90,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             itemInfo.setText(item.getDescription());
         }
     }
+
+
 }
