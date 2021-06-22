@@ -12,7 +12,7 @@ To provide a C2C e-commerce platform where book enthusiasts (NTUT Students) can 
 
 ### Component
 #### Activities
-+ ChangePasswordActivity
++ [ChangePasswordActivity](./app/src/main/java/edu/ntut/finalproject/activiies/ChangePasswordActivity.java)
 + ChangeUsernameActivity
 + ContributionActivity
 + EditItemActivity
