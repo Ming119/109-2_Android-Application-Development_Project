@@ -17,8 +17,6 @@ public class DB {
 	private final String username = System.getenv("dbUsername");
 	private final String password = System.getenv("dbPassword");
 	
-	private final DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-	
 	private Connection connection;
 
 	public DB() {
@@ -193,7 +191,7 @@ public class DB {
 		ResultSet resultSet = null;
 		
 		try {
-			String sql = "SELECT * FROM books WHERE sold=false";
+			String sql = "SELECT * FROM books WHERE sold=false ORDER BY id DESC";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			
@@ -303,16 +301,22 @@ public class DB {
 		return false;
 	}
 	
+//	public boolean CreateChatRecord(String from, String to, String message, int id)
 	public boolean CreateChatRecord(String from, String to, String message) {
 		connect();
 		
 		try {
-			String sql = "INSERT INTO chatRecord (fromUID, toUID, message) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO chatRecord (fromUID, toUID, message, id) VALUES (?, ?, ?, ?)";	// id not in uses;
+//			String sql = "INSERT INTO chatRecord (fromUID, toUID, message, id) VALUES (?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, from);
 			statement.setString(2, to);
 			statement.setString(3, message);
+//			statement.setInt(4, id);
+			statement.setInt(4, 0);
+			
+			System.out.println(statement.toString());
 			
 			int result = statement.executeUpdate();
 			if (result > 0) {
@@ -350,16 +354,49 @@ public class DB {
 		return resultSet;
 	}
 	
-	public ResultSet ReadChatRecord(String uid) {
+//	public ResultSet ReadChatRecord(String from, String to, int id)
+	public ResultSet ReadChatRecord(String from, String to) {
 		connect();
 		ResultSet resultSet = null;
 		
 		try {
-			String sql = "SELECT * FROM chatRecord WHERE fromUID=? OR toUID=?";
+			String sql = "SELECT * FROM chatRecord WHERE (fromUID=? AND toUID=?) OR (fromUID=? AND toUID=?)";
+//			String sql = "SELECT * FROM chatRecord WHERE ((fromUID=? AND toUID=?) OR (fromUID=? AND toUID=?)) AND id=?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, from);
+			statement.setString(2, to);
+			statement.setString(3, to);
+			statement.setString(4, from);
+//			statement.setInt(5, id);
+			
+			resultSet = statement.executeQuery();
+			
+		} catch(SQLException e) {
+			System.err.println("SQLException: " + e.getMessage());
+			System.err.println("SQLState: " + e.getSQLState());
+			System.err.println("VendorError: " + e.getErrorCode());
+		}
+		
+		return resultSet;
+	}
+	
+	
+	
+	public ResultSet GetLastChat(String uid) {
+		connect();
+		ResultSet resultSet = null;
+		
+		try {
+			String sql = "SELECT t1.* FROM chatRecord t1 LEFT JOIN chatRecord t2 ON ((t2.toUID=? OR t2.fromUID=?) AND t1.toUID=t2.toUID AND t1.crid<t2.crid) WHERE t2.crid IS NULL AND (t1.fromUID=? OR t1.toUID=?) ORDER BY crid DESC LIMIT 1";
+//			String sql = "SELECT fromUID, toUID, id FROM chatRecord WHERE (fromUID=? OR toUID=?) GROUP BY id";
+			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, uid);
 			statement.setString(2, uid);
+			statement.setString(3, uid);
+			statement.setString(4, uid);
 			
 			resultSet = statement.executeQuery();
 			

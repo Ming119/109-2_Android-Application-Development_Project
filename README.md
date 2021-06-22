@@ -1,6 +1,11 @@
 # 109-2_Android-Application-Development_Project
 #### Current Version: Beta 0617
 
+### 組員名單：
++ 資工二 108590049 符芷琪
++ 資工二 108590050 李浩銘
++ 資工二 108590061 黃聖耀
+
 ### Database Web APIs
 #### By 108590050  
 

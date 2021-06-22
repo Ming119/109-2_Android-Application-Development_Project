@@ -25,8 +25,10 @@ public class CreateChatRecord extends HttpServlet {
 		String from = request.getParameter("fromUID");
 		String to   = request.getParameter("toUID");
 		String msg  = request.getParameter("message");
+//		int    id   = Integer.parseInt(request.getParameter("id"));
 		
 		DB db = new DB();
+//		if(db.CreateChatRecord(from, to, msg, id))
 		if(db.CreateChatRecord(from, to, msg))
 			response.setStatus(200);
 		else

@@ -22,15 +22,18 @@ public class GetChatRecord extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uid = request.getParameter("uid");
+		String from = request.getParameter("fromUID");
+		String to   = request.getParameter("toUID");
+//		String id   = request.getParameter("id");
 		
 		DB db = new DB();
 		ResultSet rs = null;
 		
-		if (uid == null) 
+		if (from == null) 
 			rs = db.ReadChatRecords();
 		else 
-			rs = db.ReadChatRecord(uid);
+			rs = db.ReadChatRecord(from, to);
+//			rs = db.ReadChatRecord(from, to, Integer.parseInt(id));
 		
 		String res = "{\"chatRecord\":[";
 		try {
@@ -38,8 +41,9 @@ public class GetChatRecord extends HttpServlet {
 				res += "{";
 				res += "\"crid\":\"" + rs.getString("crid") + "\",";
 				res += "\"fromUID\":\"" + rs.getString("fromUID") + "\",";
-				res += "\"toUID\":\"" + rs.getString("toUID") + "\"";
-				res += "\"message\":\"" + rs.getString("message") + "\"";
+				res += "\"toUID\":\"" + rs.getString("toUID") + "\",";
+				res += "\"message\":\"" + rs.getString("message") + "\"";	// Remember add `,` after `\"` if uncomment 
+//				res += "\"id\":" + rs.getInt("id");
 				res += "}";
 				if (!rs.isLast())
 					res += ",";
@@ -63,5 +67,7 @@ public class GetChatRecord extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
+	
+	
 }

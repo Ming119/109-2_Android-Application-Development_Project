@@ -1,5 +1,9 @@
-/*
+/**
+ * No more changes will be made before presentation
  * By 108590050
+ *
+ * Final Version
+ *
  */
 
 package edu.ntut.finalproject.models;
@@ -38,7 +42,14 @@ public class Database {
      * @param method    String POST/GET
      */
     private void connect(@NonNull Uri uri, String method) {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        /**
+         * TODO: MultiThreading
+         *      `AsyncTask` was deprecated in Android API 30.
+         *      Suggesting use `ExecutorService` instead.
+         *      `Thread` is not suggested.
+         */
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
         executorService.execute(() -> {
             try  {
                 URL requestURL = new URL(uri.toString());

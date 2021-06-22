@@ -54,12 +54,20 @@
 <i>/DeleteItem?id=itemID</i>
 <p/><hr/>
 
+<h3>Create a new item</h3>
+<i>/CreateChatRecord?fromUID=fromUID&toUID=toUID&message=message</i>
+<p/><hr/>
+
 <h3>Get all chat record</h3>
 <i>/GetChatRecord</i>
 <p/><hr/>
 
-<h3>Get a chat record by uid</h3>
-<i>/GetChatRecord?uid=userID</i>
+<h3>Get chat records between two user</h3>
+<i>/GetChatRecord?fromUID=userID&toUID=userID</i>
+<p/><hr/>
+
+<h3>Get the last chat record by fromUID</h3>
+<i>/GetLastChat?uid=userID</i>
 <p/><hr/>
 
 <h3>Delete a chat record by crid</h3>
