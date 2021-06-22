@@ -29,19 +29,19 @@ To provide a C2C e-commerce platform where book enthusiasts (NTUT Students) can 
 + [TabAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/TabAdapter.java)
 
 #### Fragments
-+ TabFragment_mainpage
-+ TabFragment_message
-+ TabFragment_post_item
-+ TabFragment_profile_logedin
-+ TabFragment_profile_login
-+ TabFragment_search
++ [TabFragment_mainpage](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_mainpage.java)
++ [TabFragment_message](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_message.java)
++ [TabFragment_post_item](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_post_item.java)
++ [TabFragment_profile_logedin](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_profile_logedin.java)
++ [TabFragment_profile_login](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_profile_login.java)
++ [TabFragment_search](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/fragments/TabFragment_search.java)
 
 #### Models
-+ Chat
-+ Database
-+ Item
-+ Message
-+ User
++ [Chat](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/models/Chat.java)
++ [Database](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/models/Database.java)
++ [Item](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/models/Item.java)
++ [Message](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/models/Message.java)
++ [User](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/models/User.java)
 
 
 
