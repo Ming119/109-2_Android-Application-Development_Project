@@ -6,6 +6,45 @@
 + 資工二 108590050 李浩銘
 + 資工二 108590061 黃聖耀
 
+
+### Motivation
+To provide a C2C e-commerce platform where book enthusiasts (NTUT Students) can find it easy to exchange, buy or sell pre-owned books.
+
+### Component
+#### Activities
++ ChangePasswordActivity
++ ChangeUsernameActivity
++ ContributionActivity
++ EditItemActivity
++ ItemDetailsActivity
++ MainActivity
++ MessageActivity
++ RegisterActivity
+
+#### Adapters
++ ChatAdapter
++ ItemAdapter
++ MessageAdapter
++ SearchAdapter
++ TabAdapter
+
+#### Fragments
++ TabFragment_mainpage
++ TabFragment_message
++ TabFragment_post_item
++ TabFragment_profile_logedin
++ TabFragment_profile_login
++ TabFragment_search
+
+#### Models
++ Chat
++ Database
++ Item
++ Message
++ User
+
+
+
 ### Database Web APIs
 #### By 108590050  
 
