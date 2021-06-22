@@ -12,21 +12,21 @@ To provide a C2C e-commerce platform where book enthusiasts (NTUT Students) can 
 
 ### Component
 #### Activities
-+ [ChangePasswordActivity](./app/src/main/java/edu/ntut/finalproject/activiies/ChangePasswordActivity.java)
-+ ChangeUsernameActivity
-+ ContributionActivity
-+ EditItemActivity
-+ ItemDetailsActivity
-+ MainActivity
-+ MessageActivity
-+ RegisterActivity
++ [ChangePasswordActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/ChangePasswordActivity.java)
++ [ChangeUsernameActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/ChangeUsernameActivity.java)
++ [ContributionActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/ContributionActivity.java)
++ [EditItemActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/EditItemActivity.java)
++ [ItemDetailsActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/ItemDetailsActivity.java)
++ [MainActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/MainActivity.java)
++ [MessageActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/MessageActivity.java)
++ [RegisterActivity](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/activities/RegisterActivity.java)
 
 #### Adapters
-+ ChatAdapter
-+ ItemAdapter
-+ MessageAdapter
-+ SearchAdapter
-+ TabAdapter
++ [ChatAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/ChatAdapter.java)
++ [ItemAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/ItemAdapter.java)
++ [MessageAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/MessageAdapter.java)
++ [SearchAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/SearchAdapter.java)
++ [TabAdapter](https://github.com/Ming119/109-2_Android-Application-Development_Project/blob/main/app/src/main/java/edu/ntut/finalproject/adapters/TabAdapter.java)
 
 #### Fragments
 + TabFragment_mainpage
